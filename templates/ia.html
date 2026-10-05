@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir - Apoio para neurodivergentes</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           CONFIGURAÇÕES GERAIS
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa: #e96b8f;
+            --rosa-escuro: #d9577c;
+            --rosa-claro: #fdebf1;
+            --amarelo: #f6c945;
+            --amarelo-claro: #fff8dc;
+            --texto: #292733;
+            --texto-claro: #6f6a78;
+            --branco: #ffffff;
+            --fundo: #fffafa;
+            --borda: #eadde2;
+            --sombra: 0 15px 45px rgba(63, 39, 48, 0.08);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(233, 107, 143, 0.08), transparent 25%),
+                radial-gradient(circle at 90% 20%, rgba(246, 201, 69, 0.10), transparent 25%),
+                var(--fundo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           CABEÇALHO
+        ========================================================= */
+
+        header {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 85px;
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--texto);
+        }
+
+        .logo-pe {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, var(--rosa), var(--amarelo));
+            color: white;
+
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .logo-text strong {
+            display: block;
+            font-size: 19px;
+            color: var(--rosa-escuro);
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 11px;
+            color: var(--texto-claro);
+            margin-top: 2px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .menu a {
+            color: var(--texto);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .menu a:hover {
+            color: var(--rosa-escuro);
+        }
+
+        .menu a.ativo {
+            color: var(--rosa-escuro);
+        }
+
+        .menu a.ativo::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            border-radius: 10px;
+            background: var(--rosa);
+        }
+
+        /* =========================================================
+           CONTEÚDO
+        ========================================================= */
+
+        .pagina {
+            width: 100%;
+            padding: 65px 20px 80px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        /* =========================================================
+           APRESENTAÇÃO DA P.E.
+        ========================================================= */
+
+        .introducao {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 45px;
+        }
+
+        .selo-pe {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--rosa), var(--amarelo));
+
+            color: white;
+            font-size: 25px;
+            font-weight: 900;
+
+            box-shadow: 0 10px 25px rgba(233, 107, 143, 0.20);
+        }
+
+        .introducao h1 {
+            font-size: clamp(35px, 5vw, 55px);
+            line-height: 1.05;
+            margin-bottom: 18px;
+            letter-spacing: -1.5px;
+        }
+
+        .introducao h1 span {
+            color: var(--rosa-escuro);
+        }
+
+        .introducao p {
+            color: var(--texto-claro);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .aviso {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 17px;
+            border-radius: 30px;
+            background: var(--amarelo-claro);
+            border: 1px solid #f0dc83;
+            color: #655525;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           CAIXA DO QUESTIONÁRIO
+        ========================================================= */
+
+        .questionario {
+            background: var(--branco);
+            border: 1px solid var(--borda);
+            border-radius: 30px;
+            padding: 45px;
+            box-shadow: var(--sombra);
+        }
+
+        .topo-questionario {
+            margin-bottom: 35px;
+        }
+
+        .progresso-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--texto-claro);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .barra-fundo {
+            width: 100%;
+            height: 8px;
+            background: #f1e8eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .barra {
+            height: 100%;
+            width: 16.66%;
+            background: linear-gradient(90deg, var(--rosa), var(--amarelo));
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        /* =========================================================
+           PERGUNTAS
+        ========================================================= */
+
+        .pergunta {
+            display: none;
+            animation: aparecer 0.35s ease;
+        }
+
+        .pergunta.ativa {
+            display: block;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .numero-pergunta {
+            color: var(--rosa-escuro);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .pergunta h2 {
+            font-size: 28px;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .descricao-pergunta {
+            color: var(--texto-claro);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* =========================================================
+           OPÇÕES
+        ========================================================= */
+
+        .opcoes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .opcao {
+            width: 100%;
+            min-height: 78px;
+            padding: 18px 20px;
+
+            background: #fff;
+            border: 1.5px solid var(--borda);
+            border-radius: 16px;
+
+            color: var(--texto);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            position: relative;
+        }
+
+        .opcao:hover {
+            border-color: var(--rosa);
+            background: var(--rosa-claro);
+            transform: translateY(-2px);
+        }
+
+        .opcao.selecionada {
+            border-color: var(--rosa);
+            background: var(--rosa-claro);
+            box-shadow: 0 0 0 3px rgba(233, 107, 143, 0.10);
+        }
+
+        .opcao.selecionada::after {
+            content: "Selecionado";
+
+            position: absolute;
+            top: 10px;
+            right: 12px;
+
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--rosa-escuro);
+        }
+
+        /* =========================================================
+           RESULTADO
+        ========================================================= */
+
+        .resultado {
+            display: none;
+        }
+
+        .resultado.mostrar {
+            display: block;
+            animation: aparecer 0.5s ease;
+        }
+
+        .resultado-cabecalho {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .resultado-cabecalho .selo-pe {
+            margin-bottom: 15px;
+        }
+
+        .resultado-cabecalho h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .resultado-cabecalho p {
+            color: var(--texto-claro);
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           RESUMO
+        ========================================================= */
+
+        .resumo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .resumo-card {
+            padding: 22px;
+            background: #fffafa;
+            border: 1px solid var(--borda);
+            border-radius: 18px;
+        }
+
+        .resumo-card span {
+            display: block;
+            color: var(--texto-claro);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .resumo-card strong {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+           SEÇÕES DO RESULTADO
+        ========================================================= */
+
+        .secao-resultado {
+            margin-top: 28px;
+        }
+
+        .titulo-secao {
+            margin-bottom: 17px;
+        }
+
+        .titulo-secao h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .titulo-secao p {
+            color: var(--texto-claro);
+            font-size: 14px;
+        }
+
+        .mensagem {
+            padding: 25px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fff3f7, #fffbed);
+            border: 1px solid #f0dfe4;
+            line-height: 1.7;
+            color: #514b55;
+        }
+
+        /* =========================================================
+           ROTINA
+        ========================================================= */
+
+        .rotina {
+            display: grid;
+            gap: 12px;
+        }
+
+        .atividade {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+
+            padding: 20px;
+            border: 1px solid var(--borda);
+            border-radius: 17px;
+            background: white;
+        }
+
+        .numero-atividade {
+            min-width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            background: var(--rosa-claro);
+            color: var(--rosa-escuro);
+            font-weight: 800;
+        }
+
+        .atividade strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .atividade p {
+            color: var(--texto-claro);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           PRODUTOS
+        ========================================================= */
+
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .produto {
+            border: 1px solid var(--borda);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .produto:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(50, 30, 40, 0.09);
+        }
+
+        .produto-imagem {
+            height: 160px;
+            background: linear-gradient(135deg, var(--rosa-claro), var(--amarelo-claro));
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .produto-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .produto-sem-imagem {
+            color: var(--rosa-escuro);
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .produto-conteudo {
+            padding: 20px;
+        }
+
+        .produto-conteudo h4 {
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        .produto-conteudo p {
+            color: var(--texto-claro);
+            font-size: 13px;
+            line-height: 1.5;
+            min-height: 58px;
+            margin-bottom: 15px;
+        }
+
+        .produto-motivo {
+            padding: 12px;
+            border-radius: 12px;
+            background: var(--amarelo-claro);
+            color: #655525;
+            font-size: 12px;
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+
+        .produto-rodape {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preco {
+            font-weight: 800;
+            color: var(--rosa-escuro);
+            font-size: 17px;
+        }
+
+        .botao-carrinho {
+            border: none;
+            border-radius: 10px;
+            padding: 10px 13px;
+
+            background: var(--rosa);
+            color: white;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .botao-carrinho:hover {
+            background: var(--rosa-escuro);
+        }
+
+        /* =========================================================
+           BOTÃO REFAZER
+        ========================================================= */
+
+        .acoes-resultado {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .botao-refazer {
+            border: 1.5px solid var(--rosa);
+            background: white;
+            color: var(--rosa-escuro);
+
+            border-radius: 13px;
+            padding: 14px 28px;
+
+            font-weight: 700;
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
+        .botao-refazer:hover {
+            background: var(--rosa);
+            color: white;
+        }
+
+        /* =========================================================
+           MENSAGEM DO CARRINHO
+        ========================================================= */
+
+        .mensagem-carrinho {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+
+            background: #292733;
+            color: white;
+
+            padding: 15px 20px;
+            border-radius: 12px;
+
+            font-size: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+
+            transform: translateY(120px);
+            opacity: 0;
+
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .mensagem-carrinho.mostrar {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =========================================================
+           RODAPÉ
+        ========================================================= */
+
+        footer {
+            background: #292733;
+            color: white;
+            padding: 45px 20px 25px;
+        }
+
+        .footer-container {
+            max-width: 1050px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 45px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 14px;
+            color: white;
+        }
+
+        .footer-col p {
+            color: #d6d2d7;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #d6d2d7;
+            text-decoration: none;
+            margin-bottom: 9px;
+            font-size: 14px;
+        }
+
+        .footer-col a:hover {
+            color: var(--amarelo);
+        }
+
+        .copyright {
+            max-width: 1050px;
+            margin: 35px auto 0;
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.12);
+
+            color: #aaa5ad;
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           RESPONSIVO
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                flex-direction: column;
+                padding: 18px 20px;
+            }
+
+            .menu {
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .questionario {
+                padding: 30px 20px;
+            }
+
+            .opcoes {
+                grid-template-columns: 1fr;
+            }
+
+            .resumo {
+                grid-template-columns: 1fr;
+            }
+
+            .produtos {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .pagina {
+                padding: 40px 12px 60px;
+            }
+
+            .introducao h1 {
+                font-size: 34px;
+            }
+
+            .pergunta h2 {
+                font-size: 23px;
+            }
+
+            .resultado-cabecalho h2 {
+                font-size: 29px;
+            }
+
+            .questionario {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         CABEÇALHO
+    ========================================================= -->
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+
+    <header class="header">
+        <div class="container header-container">
+
+            <div class="logo">
+                <a href="{{ url_for('index') }}" class="logo-link">
+
+                    <img src="{{ url_for('static', filename='img/logo.jpeg') }}"
+                        alt="Logo Para Existir"
+                        class="logo-img">
+
+                    <span class="logo-text">Para Existir</span>
+
+                </a>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="{{ url_for('index') }}#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('produtos') }}">
+                            Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#servicos">
+                            Serviços
+                        </a>
+
+
+                    <li>
+                        <a href="{{ url_for('index') }}#contato">
+                            Contato
+                        </a>
+                    </li>
+                                        </li>
+                        <a href="{{ url_for('ia') }}">
+                            P.E Rotina
+                        </a>
+                    </li>
+
+                    <li class="nav-divider"></li>
+
+                    <li>
+                        <a href="{{ url_for('login') }}" class="nav-login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('cadastro') }}" class="nav-cadastro">
+                            <i class="fas fa-user-plus"></i>
+                            Cadastro
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+
+                <div class="carrinho-icone" id="carrinho-icone">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="carrinho-contador" id="carrinho-contador">
+                        0
+                    </span>
+                </div>
+
+                <a href="{{ url_for('index') }}#contato" class="btn-header">
+                    Fale conosco
+                </a>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =========================================================
+         CONTEÚDO PRINCIPAL
+    ========================================================= -->
+
+    <main class="pagina">
+
+        <div class="container">
+
+            <!-- APRESENTAÇÃO -->
+
+            <section class="introducao">
+
+                <div class="selo-pe">
+                    P.E.
+                </div>
+
+                <h1>
+                    Assistente <span>Para Existir</span>
+                </h1>
+
+                <p>
+                    A P.E. analisa suas respostas para entender melhor
+                    as necessidades da sua rotina e apresentar estratégias
+                    de organização e produtos que podem ajudar no dia a dia.
+                </p>
+
+                <div class="aviso">
+                    A P.E. oferece sugestões de apoio e não realiza diagnósticos.
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 QUESTIONÁRIO
+            ===================================================== -->
+
+            <section class="questionario" id="questionario">
+
+                <div class="topo-questionario">
+
+                    <div class="progresso-info">
+                        <span id="texto-progresso">Pergunta 1 de 6</span>
+                        <span id="porcentagem">17%</span>
+                    </div>
+
+                    <div class="barra-fundo">
+                        <div class="barra" id="barra"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 1
+                ================================================= -->
+
+                <div
+                    class="pergunta ativa"
+                    data-pergunta="1"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 1
+                    </div>
+
+                    <h2>
+                        Você se identifica com alguma neurodivergência?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Essa informação ajuda a tornar as sugestões mais
+                        personalizadas. Não é necessário possuir um diagnóstico.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="tdah">
+                            TDAH
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="autismo">
+                            Autismo (TEA)
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="dislexia">
+                            Dislexia
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="tod">
+                            TOD
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="altas-habilidades">
+                            Altas habilidades/superdotação
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="outra">
+                            Outra neurodivergência
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="investigando">
+                            Ainda estou investigando
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="neurodivergencia"
+                            data-valor="nao-responder">
+                            Prefiro não responder
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 2
+                ================================================= -->
+
+                <div
+                    class="pergunta"
+                    data-pergunta="2"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 2
+                    </div>
+
+                    <h2>
+                        Quais dificuldades mais fazem parte da sua rotina?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Selecione aquilo que mais representa sua experiência atualmente.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="atencao">
+                            Manter a atenção e evitar distrações
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="organizacao">
+                            Organizar tarefas e administrar o tempo
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="inicio">
+                            Começar ou terminar atividades
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="mudancas">
+                            Lidar com mudanças e imprevistos
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="sensorial">
+                            Sensibilidade a sons, luzes, texturas ou outros estímulos
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="sobrecarga">
+                            Sobrecarga emocional ou dificuldade para lidar com muitas demandas
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="social">
+                            Interação e comunicação social
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="dificuldade"
+                            data-valor="nenhuma">
+                            Não sinto uma dificuldade específica
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 3
+                ================================================= -->
+
+                <div
+                    class="pergunta"
+                    data-pergunta="3"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 3
+                    </div>
+
+                    <h2>
+                        Em quais momentos essas dificuldades costumam aparecer com mais intensidade?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Escolha o momento que mais representa sua rotina atualmente.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="estudos">
+                            Estudos ou trabalho
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="organizacao">
+                            Organização da rotina
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="ambientes">
+                            Em ambientes muito movimentados
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="mudancas">
+                            Durante mudanças de planos ou atividades
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="social">
+                            Em situações sociais
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="multitarefas">
+                            Quando preciso realizar várias tarefas ao mesmo tempo
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="cansaco">
+                            Quando estou cansado(a) ou sobrecarregado(a)
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="momento"
+                            data-valor="diferentes">
+                            Em diferentes momentos do dia
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 4
+                ================================================= -->
+
+                <div
+                    class="pergunta"
+                    data-pergunta="4"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 4
+                    </div>
+
+                    <h2>
+                        Que tipo de apoio você sente que poderia fazer mais diferença?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Pense nos recursos que poderiam tornar sua rotina mais fácil.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="visual">
+                            Organização visual e listas
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="horarios">
+                            Rotinas com horários e etapas
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="lembretes">
+                            Lembretes e estímulos para iniciar tarefas
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="concentracao">
+                            Recursos para concentração
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="sensorial">
+                            Momentos e estratégias para reduzir sobrecarga sensorial
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="transicao">
+                            Apoio para lidar com mudanças e transições
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="emocional">
+                            Estratégias para organização emocional
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="apoio"
+                            data-valor="nao-sei">
+                            Ainda não sei qual tipo de apoio funciona melhor para mim
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 5
+                ================================================= -->
+
+                <div
+                    class="pergunta"
+                    data-pergunta="5"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 5
+                    </div>
+
+                    <h2>
+                        O que você gostaria de melhorar primeiro?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Escolha a área que você considera mais importante neste momento.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="organizacao">
+                            Minha organização
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="concentracao">
+                            Minha concentração
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="autonomia">
+                            Minha autonomia
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="estudos">
+                            Minha rotina de estudos/trabalho
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="sensorial">
+                            Minha relação com estímulos sensoriais
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="mudancas">
+                            Minha capacidade de lidar com mudanças
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="comunicacao">
+                            Minha comunicação e interação
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="prioridade"
+                            data-valor="bem-estar">
+                            Meu bem-estar no dia a dia
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PERGUNTA 6
+                ================================================= -->
+
+                <div
+                    class="pergunta"
+                    data-pergunta="6"
+                >
+
+                    <div class="numero-pergunta">
+                        PERGUNTA 6
+                    </div>
+
+                    <h2>
+                        Como você prefere que as sugestões sejam apresentadas?
+                    </h2>
+
+                    <p class="descricao-pergunta">
+                        Essa preferência ajuda a P.E. a adaptar a forma como apresenta sua rotina.
+                    </p>
+
+                    <div class="opcoes">
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="passo">
+                            Passo a passo, de forma bem objetiva
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="visual">
+                            Visualmente, com listas e quadros
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="poucas">
+                            Com poucas informações por vez
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="detalhada">
+                            Com explicações mais detalhadas
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="flexivel">
+                            Com bastante flexibilidade, sem horários rígidos
+                        </button>
+
+                        <button class="opcao"
+                            data-pergunta="preferencia"
+                            data-valor="combinacao">
+                            Uma combinação dessas opções
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     RESULTADO
+                ================================================= -->
+
+                <div class="resultado" id="resultado">
+
+                    <div class="resultado-cabecalho">
+
+                        <div class="selo-pe">
+                            P.E.
+                        </div>
+
+                        <h2>
+                            Sua rotina, do seu jeito
+                        </h2>
+
+                        <p>
+                            Com base nas suas respostas, a P.E. preparou
+                            algumas sugestões para tornar sua rotina mais organizada
+                            e confortável.
+                        </p>
+
+                    </div>
+
+
+                    <!-- RESUMO -->
+
+                    <div class="resumo">
+
+                        <div class="resumo-card">
+                            <span>Principal necessidade</span>
+                            <strong id="resumo-dificuldade">-</strong>
+                        </div>
+
+                        <div class="resumo-card">
+                            <span>Momento de maior necessidade</span>
+                            <strong id="resumo-momento">-</strong>
+                        </div>
+
+                        <div class="resumo-card">
+                            <span>Prioridade escolhida</span>
+                            <strong id="resumo-prioridade">-</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- MENSAGEM -->
+
+                    <section class="secao-resultado">
+
+                        <div class="titulo-secao">
+                            <h3>O que a P.E. percebeu</h3>
+                            <p>
+                                Uma interpretação das suas respostas.
+                            </p>
+                        </div>
+
+                        <div class="mensagem" id="mensagem">
+                        </div>
+
+                    </section>
+
+
+                    <!-- ROTINA -->
+
+                    <section class="secao-resultado">
+
+                        <div class="titulo-secao">
+                            <h3>Sugestão de rotina</h3>
+                            <p>
+                                Estratégias simples que podem ser adaptadas à sua realidade.
+                            </p>
+                        </div>
+
+                        <div class="rotina" id="rotina">
+                        </div>
+
+                    </section>
+
+
+                    <!-- PRODUTOS -->
+
+                    <section class="secao-resultado">
+
+                        <div class="titulo-secao">
+                            <h3>Produtos que podem ajudar</h3>
+                            <p>
+                                A P.E. selecionou produtos relacionados às necessidades
+                                identificadas nas suas respostas.
+                            </p>
+                        </div>
+
+                        <div class="produtos" id="produtos">
+                        </div>
+
+                    </section>
+
+
+                    <div class="acoes-resultado">
+
+                        <button
+                            class="botao-refazer"
+                            id="refazer"
+                        >
+                            Refazer questionário
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         RODAPÉ
+    ========================================================= -->
+
+    
+
+    <!-- =========================================================
+         AVISO DO CARRINHO
+    ========================================================= -->
+
+    <div
+        class="mensagem-carrinho"
+        id="mensagem-carrinho"
+    ></div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT DA P.E.
+    ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           RESPOSTAS
+        ========================================================= */
+
+        const respostas = {
+            neurodivergencia: "",
+            dificuldade: "",
+            momento: "",
+            apoio: "",
+            prioridade: "",
+            preferencia: ""
+        };
+
+
+        let perguntaAtual = 1;
+
+        const totalPerguntas = 6;
+
+
+        /* =========================================================
+           ELEMENTOS
+        ========================================================= */
+
+        const perguntas = document.querySelectorAll(".pergunta");
+
+        const opcoes = document.querySelectorAll(".opcao");
+
+        const barra = document.getElementById("barra");
+
+        const textoProgresso =
+            document.getElementById("texto-progresso");
+
+        const porcentagem =
+            document.getElementById("porcentagem");
+
+        const questionario =
+            document.getElementById("questionario");
+
+        const resultado =
+            document.getElementById("resultado");
+
+
+        /* =========================================================
+           TEXTOS DAS RESPOSTAS
+        ========================================================= */
+
+        const textos = {
+
+            dificuldade: {
+
+                atencao:
+                    "Manter a atenção e evitar distrações",
+
+                organizacao:
+                    "Organizar tarefas e administrar o tempo",
+
+                inicio:
+                    "Começar ou terminar atividades",
+
+                mudancas:
+                    "Lidar com mudanças e imprevistos",
+
+                sensorial:
+                    "Sensibilidade a estímulos",
+
+                sobrecarga:
+                    "Sobrecarga emocional ou muitas demandas",
+
+                social:
+                    "Interação e comunicação social",
+
+                nenhuma:
+                    "Nenhuma dificuldade específica"
+
+            },
+
+            momento: {
+
+                estudos:
+                    "Estudos ou trabalho",
+
+                organizacao:
+                    "Organização da rotina",
+
+                ambientes:
+                    "Ambientes muito movimentados",
+
+                mudancas:
+                    "Mudanças de planos ou atividades",
+
+                social:
+                    "Situações sociais",
+
+                multitarefas:
+                    "Várias tarefas ao mesmo tempo",
+
+                cansaco:
+                    "Momentos de cansaço ou sobrecarga",
+
+                diferentes:
+                    "Diferentes momentos do dia"
+
+            },
+
+            prioridade: {
+
+                organizacao:
+                    "Organização",
+
+                concentracao:
+                    "Concentração",
+
+                autonomia:
+                    "Autonomia",
+
+                estudos:
+                    "Rotina de estudos/trabalho",
+
+                sensorial:
+                    "Estímulos sensoriais",
+
+                mudancas:
+                    "Lidar com mudanças",
+
+                comunicacao:
+                    "Comunicação e interação",
+
+                "bem-estar":
+                    "Bem-estar no dia a dia"
+
+            }
+
+        };
+
+
+        /* =========================================================
+           ATUALIZA PROGRESSO
+        ========================================================= */
+
+        function atualizarProgresso() {
+
+            const percentual =
+                (perguntaAtual / totalPerguntas) * 100;
+
+            barra.style.width = percentual + "%";
+
+            textoProgresso.textContent =
+                "Pergunta " +
+                perguntaAtual +
+                " de " +
+                totalPerguntas;
+
+            porcentagem.textContent =
+                Math.round(percentual) + "%";
+        }
+
+
+        /* =========================================================
+           MOSTRAR PERGUNTA
+        ========================================================= */
+
+        function mostrarPergunta(numero) {
+
+            perguntas.forEach(function(pergunta) {
+
+                pergunta.classList.remove("ativa");
+
+            });
+
+            const pergunta =
+                document.querySelector(
+                    '.pergunta[data-pergunta="' + numero + '"]'
+                );
+
+            if (pergunta) {
+
+                pergunta.classList.add("ativa");
+
+            }
+
+            atualizarProgresso();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        /* =========================================================
+           CLIQUE NAS OPÇÕES
+        ========================================================= */
+
+        opcoes.forEach(function(opcao) {
+
+            opcao.addEventListener("click", function() {
+
+                const nomePergunta =
+                    this.dataset.pergunta;
+
+                const valor =
+                    this.dataset.valor;
+
+
+                /* Salva resposta */
+
+                respostas[nomePergunta] = valor;
+
+
+                /* Marca opção */
+
+                const pergunta =
+                    this.closest(".pergunta");
+
+                pergunta
+                    .querySelectorAll(".opcao")
+                    .forEach(function(item) {
+
+                        item.classList.remove("selecionada");
+
+                    });
+
+                this.classList.add("selecionada");
+
+
+                /* Aguarda um pouco para a seleção aparecer */
+
+                setTimeout(function() {
+
+                    if (perguntaAtual < totalPerguntas) {
+
+                        perguntaAtual++;
+
+                        mostrarPergunta(perguntaAtual);
+
+                    } else {
+
+                        gerarResultado();
+
+                    }
+
+                }, 350);
+
+            });
+
+        });
+
+
+        /* =========================================================
+           GERAR RESULTADO
+        ========================================================= */
+
+        function gerarResultado() {
+
+            document.querySelector(".topo-questionario")
+                .style.display = "none";
+
+            perguntas.forEach(function(pergunta) {
+
+                pergunta.style.display = "none";
+
+            });
+
+            resultado.classList.add("mostrar");
+
+            gerarResumo();
+
+            gerarMensagem();
+
+            gerarRotina();
+
+            gerarProdutos();
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        /* =========================================================
+           RESUMO
+        ========================================================= */
+
+        function gerarResumo() {
+
+            document.getElementById("resumo-dificuldade")
+                .textContent =
+                textos.dificuldade[respostas.dificuldade] || "Não informado";
+
+            document.getElementById("resumo-momento")
+                .textContent =
+                textos.momento[respostas.momento] || "Não informado";
+
+            document.getElementById("resumo-prioridade")
+                .textContent =
+                textos.prioridade[respostas.prioridade] || "Não informado";
+        }
+
+
+        /* =========================================================
+           MENSAGEM PERSONALIZADA
+        ========================================================= */
+
+        function gerarMensagem() {
+
+            let mensagem = "";
+
+            const dificuldade =
+                respostas.dificuldade;
+
+            const prioridade =
+                respostas.prioridade;
+
+            if (dificuldade === "atencao") {
+
+                mensagem =
+                    "Pelas suas respostas, a concentração e a manutenção da atenção parecem ser pontos importantes da sua rotina. A P.E. sugere reduzir distrações, dividir atividades maiores em etapas menores e utilizar recursos que ajudem a manter o foco por períodos curtos.";
+
+            }
+
+            else if (dificuldade === "organizacao") {
+
+                mensagem =
+                    "Sua principal necessidade parece estar relacionada à organização das tarefas e do tempo. Uma rotina visual, com poucas prioridades por vez e etapas bem definidas, pode facilitar a compreensão do que precisa ser feito.";
+
+            }
+
+            else if (dificuldade === "inicio") {
+
+                mensagem =
+                    "Começar ou concluir atividades parece ser uma das principais dificuldades identificadas. Uma estratégia interessante é transformar tarefas grandes em pequenos passos e utilizar lembretes visuais para indicar o próximo passo.";
+
+            }
+
+            else if (dificuldade === "mudancas") {
+
+                mensagem =
+                    "As mudanças e os imprevistos parecem exigir mais esforço da sua rotina. Ter uma estrutura previsível, mas com espaço para alterações, pode ajudar a tornar as transições mais tranquilas.";
+
+            }
+
+            else if (dificuldade === "sensorial") {
+
+                mensagem =
+                    "A sensibilidade aos estímulos aparece como uma necessidade importante. A P.E. sugere observar quais ambientes e estímulos costumam gerar maior desconforto e criar estratégias para tornar esses momentos mais confortáveis.";
+
+            }
+
+            else if (dificuldade === "sobrecarga") {
+
+                mensagem =
+                    "Suas respostas indicam que lidar com muitas demandas ao mesmo tempo pode ser difícil. Organizar as prioridades, fazer pausas e evitar concentrar várias tarefas simultaneamente pode ajudar a reduzir a sensação de sobrecarga.";
+
+            }
+
+            else if (dificuldade === "social") {
+
+                mensagem =
+                    "A interação e a comunicação social aparecem como uma área importante. Recursos que organizem situações, etapas e expectativas podem ajudar a tornar determinadas interações mais previsíveis.";
+
+            }
+
+            else {
+
+                mensagem =
+                    "Suas respostas mostram que você está buscando formas de tornar sua rotina mais funcional. A P.E. organizou sugestões que podem ser adaptadas às suas necessidades e preferências atuais.";
+
+            }
+
+
+            if (prioridade === "autonomia") {
+
+                mensagem +=
+                    " Como sua prioridade é a autonomia, as sugestões foram pensadas para ajudar você a visualizar e realizar atividades de maneira cada vez mais independente.";
+
+            }
+
+            else if (prioridade === "bem-estar") {
+
+                mensagem +=
+                    " Como seu foco principal é o bem-estar, as sugestões priorizam uma rotina mais equilibrada, previsível e adaptável.";
+
+            }
+
+
+            document.getElementById("mensagem")
+                .textContent = mensagem;
+        }
+
+
+        /* =========================================================
+           GERAR ROTINA
+        ========================================================= */
+
+        function gerarRotina() {
+
+            const rotina =
+                document.getElementById("rotina");
+
+            rotina.innerHTML = "";
+
+            let atividades = [];
+
+
+            /* Organização */
+
+            if (
+                respostas.dificuldade === "organizacao" ||
+                respostas.prioridade === "organizacao" ||
+                respostas.apoio === "visual"
+            ) {
+
+                atividades.push({
+                    titulo: "Visualize o dia",
+                    texto: "Liste as principais atividades do dia e organize-as em uma sequência simples."
+                });
+
+            }
+
+
+            /* Atenção */
+
+            if (
+                respostas.dificuldade === "atencao" ||
+                respostas.prioridade === "concentracao" ||
+                respostas.apoio === "concentracao"
+            ) {
+
+                atividades.push({
+                    titulo: "Divida o período de foco",
+                    texto: "Escolha uma tarefa por vez e trabalhe nela por um período curto antes de fazer uma pausa."
+                });
+
+            }
+
+
+            /* Início */
+
+            if (
+                respostas.dificuldade === "inicio" ||
+                respostas.apoio === "lembretes"
+            ) {
+
+                atividades.push({
+                    titulo: "Comece pelo menor passo",
+                    texto: "Em vez de pensar na atividade inteira, identifique apenas a primeira ação necessária."
+                });
+
+            }
+
+
+            /* Mudanças */
+
+            if (
+                respostas.dificuldade === "mudancas" ||
+                respostas.prioridade === "mudancas" ||
+                respostas.apoio === "transicao"
+            ) {
+
+                atividades.push({
+                    titulo: "Prepare as transições",
+                    texto: "Sempre que possível, avise com antecedência quando uma atividade ou plano estiver prestes a mudar."
+                });
+
+            }
+
+
+            /* Sensorial */
+
+            if (
+                respostas.dificuldade === "sensorial" ||
+                respostas.prioridade === "sensorial" ||
+                respostas.apoio === "sensorial"
+            ) {
+
+                atividades.push({
+                    titulo: "Observe os estímulos",
+                    texto: "Identifique sons, luzes, texturas ou ambientes que costumam causar desconforto e pense em formas de reduzir esses estímulos."
+                });
+
+            }
+
+
+            /* Sobrecarga */
+
+            if (
+                respostas.dificuldade === "sobrecarga" ||
+                respostas.momento === "cansaco" ||
+                respostas.prioridade === "bem-estar"
+            ) {
+
+                atividades.push({
+                    titulo: "Separe as demandas",
+                    texto: "Evite concentrar várias tarefas ao mesmo tempo. Escolha o que é prioridade e deixe o restante para depois."
+                });
+
+            }
+
+
+            /* Estudos */
+
+            if (
+                respostas.momento === "estudos" ||
+                respostas.prioridade === "estudos"
+            ) {
+
+                atividades.push({
+                    titulo: "Organize o momento de estudo",
+                    texto: "Defina uma tarefa principal, deixe os materiais necessários por perto e estabeleça uma pausa ao terminar."
+                });
+
+            }
+
+
+            /* Preferência visual */
+
+            if (
+                respostas.preferencia === "visual"
+            ) {
+
+                atividades.push({
+                    titulo: "Use referências visuais",
+                    texto: "Prefira listas, quadros, checklists e outros recursos visuais para acompanhar as etapas."
+                });
+
+            }
+
+
+            /* Preferência passo a passo */
+
+            if (
+                respostas.preferencia === "passo"
+            ) {
+
+                atividades.push({
+                    titulo: "Siga uma etapa por vez",
+                    texto: "Concentre-se apenas na próxima ação antes de passar para a seguinte."
+                });
+
+            }
+
+
+            /* Preferência poucas informações */
+
+            if (
+                respostas.preferencia === "poucas"
+            ) {
+
+                atividades.push({
+                    titulo: "Reduza as informações",
+                    texto: "Escolha poucas tarefas importantes por vez para evitar excesso de informações."
+                });
+
+            }
+
+
+            /* Preferência detalhada */
+
+            if (
+                respostas.preferencia === "detalhada"
+            ) {
+
+                atividades.push({
+                    titulo: "Detalhe as etapas",
+                    texto: "Divida as atividades em pequenas ações para saber exatamente o que precisa ser feito."
+                });
+
+            }
+
+
+            /* Preferência flexível */
+
+            if (
+                respostas.preferencia === "flexivel"
+            ) {
+
+                atividades.push({
+                    titulo: "Mantenha espaço para mudanças",
+                    texto: "Use a rotina como uma orientação, sem transformar os horários em regras rígidas."
+                });
+
+            }
+
+
+            /* Caso nenhuma regra seja ativada */
+
+            if (atividades.length === 0) {
+
+                atividades.push({
+                    titulo: "Defina uma prioridade",
+                    texto: "Escolha uma atividade importante para começar e organize o restante ao longo do dia."
+                });
+
+                atividades.push({
+                    titulo: "Faça uma pausa",
+                    texto: "Reserve pequenos momentos para descansar entre as atividades."
+                });
+
+                atividades.push({
+                    titulo: "Revise o dia",
+                    texto: "No final do dia, observe o que funcionou e o que pode ser ajustado."
+                });
+
+            }
+
+
+            /* Limita a rotina */
+
+            atividades =
+                atividades.slice(0, 5);
+
+
+            atividades.forEach(function(atividade, index) {
+
+                const elemento =
+                    document.createElement("div");
+
+                elemento.className =
+                    "atividade";
+
+                elemento.innerHTML = `
+                    <div class="numero-atividade">
+                        ${index + 1}
+                    </div>
+
+                    <div>
+                        <strong>${atividade.titulo}</strong>
+                        <p>${atividade.texto}</p>
+                    </div>
+                `;
+
+                rotina.appendChild(elemento);
+
+            });
+
+        }
+
+
+        /* =========================================================
+           PRODUTOS
+        ========================================================= */
+
+        /*
+            IMPORTANTE:
+
+            Estes são os produtos utilizados como exemplo
+            para fazer a lógica funcionar.
+
+            Quando você me passar a lista EXATA dos produtos
+            da sua loja, podemos trocar essa lista e deixar
+            as recomendações totalmente conectadas ao seu catálogo.
+        */
+
+        const produtosBase = [
+
+            {
+                id: "popit",
+                nome: "Pop it circular",
+                preco: "R$ 19,99",
+                imagem: "/static/img/prod1.jpeg",
+                descricao:
+                    "Recurso sensorial que pode ser utilizado durante momentos de pausa ou concentração.",
+                motivo:
+                    "Pode fazer sentido quando a pessoa busca recursos relacionados à concentração ou estímulos sensoriais."
+            },
+
+            {
+                id: "fidget",
+                nome: "Kit Fidget Toy",
+                preco: "R$ 29,99",
+                imagem: "/static/img/prod2.jpeg",
+                descricao:
+                    "Conjunto de recursos manipuláveis para diferentes momentos da rotina.",
+                motivo:
+                    "Pode ser interessante para quem procura recursos de concentração ou apoio sensorial."
+            },
+
+            {
+                id: "alfabeto",
+                nome: "Alfabeto educativo",
+                preco: "R$ 39,99",
+                imagem: "/static/img/prod3.jpeg",
+                descricao:
+                    "Recurso educativo que pode auxiliar atividades de aprendizagem.",
+                motivo:
+                    "Pode ajudar especialmente quando a rotina envolve estudos e atividades de aprendizagem."
+            },
+
+            {
+                id: "quadro",
+                nome: "Quadro de rotina sensorial",
+                preco: "R$ 49,99",
+                imagem: "/static/img/prod9.jpeg",
+                descricao:
+                    "Recurso visual para organizar atividades, etapas e momentos da rotina.",
+                motivo:
+                    "É indicado principalmente para necessidades relacionadas à organização visual, rotina e transições."
+            },
+
+            {
+                id: "planner",
+                nome: "Planner da Inclusão",
+                preco: "R$ 39,99",
+                imagem: "/static/img/prod15.jpeg",
+                descricao:
+                    "Planner pensado para auxiliar a organização das atividades e compromissos.",
+                motivo:
+                    "Pode ser útil para quem busca mais organização, planejamento e autonomia."
+            }
+
+        ];
+
+
+        /* =========================================================
+           SISTEMA DE PONTUAÇÃO DOS PRODUTOS
+        ========================================================= */
+
+        function gerarProdutos() {
+
+            const produtosComPontuacao =
+                produtosBase.map(function(produto) {
+
+                    return {
+                        ...produto,
+                        pontos: 0
+                    };
+
+                });
+
+
+            produtosComPontuacao.forEach(function(produto) {
+
+                /* Organização */
+
+                if (
+                    respostas.dificuldade === "organizacao" &&
+                    (
+                        produto.id === "planner" ||
+                        produto.id === "quadro"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                if (
+                    respostas.prioridade === "organizacao" &&
+                    (
+                        produto.id === "planner" ||
+                        produto.id === "quadro"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                /* Concentração */
+
+                if (
+                    respostas.dificuldade === "atencao" &&
+                    (
+                        produto.id === "popit" ||
+                        produto.id === "fidget"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                if (
+                    respostas.prioridade === "concentracao" &&
+                    (
+                        produto.id === "popit" ||
+                        produto.id === "fidget"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                /* Sensorial */
+
+                if (
+                    respostas.dificuldade === "sensorial" &&
+                    (
+                        produto.id === "popit" ||
+                        produto.id === "fidget" ||
+                        produto.id === "quadro"
+                    )
+                ) {
+                    produto.pontos += 6;
+                }
+
+
+                if (
+                    respostas.prioridade === "sensorial" &&
+                    (
+                        produto.id === "popit" ||
+                        produto.id === "fidget"
+                    )
+                ) {
+                    produto.pontos += 6;
+                }
+
+
+                /* Estudos */
+
+                if (
+                    respostas.momento === "estudos" &&
+                    produto.id === "alfabeto"
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                if (
+                    respostas.prioridade === "estudos" &&
+                    (
+                        produto.id === "alfabeto" ||
+                        produto.id === "planner"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                /* Mudanças */
+
+                if (
+                    respostas.dificuldade === "mudancas" &&
+                    produto.id === "quadro"
+                ) {
+                    produto.pontos += 6;
+                }
+
+
+                if (
+                    respostas.apoio === "transicao" &&
+                    produto.id === "quadro"
+                ) {
+                    produto.pontos += 6;
+                }
+
+
+                /* Autonomia */
+
+                if (
+                    respostas.prioridade === "autonomia" &&
+                    (
+                        produto.id === "planner" ||
+                        produto.id === "quadro"
+                    )
+                ) {
+                    produto.pontos += 4;
+                }
+
+
+                /* Organização visual */
+
+                if (
+                    respostas.apoio === "visual" &&
+                    produto.id === "quadro"
+                ) {
+                    produto.pontos += 6;
+                }
+
+
+                /* Horários e etapas */
+
+                if (
+                    respostas.apoio === "horarios" &&
+                    (
+                        produto.id === "quadro" ||
+                        produto.id === "planner"
+                    )
+                ) {
+                    produto.pontos += 5;
+                }
+
+
+                /* Lembretes */
+
+                if (
+                    respostas.apoio === "lembretes" &&
+                    produto.id === "planner"
+                ) {
+                    produto.pontos += 5;
+                }
+
+            });
+
+
+            produtosComPontuacao.sort(function(a, b) {
+
+                return b.pontos - a.pontos;
+
+            });
+
+
+            let recomendados =
+                produtosComPontuacao
+                    .filter(function(produto) {
+                        return produto.pontos > 0;
+                    })
+                    .slice(0, 3);
+
+
+            /*
+                Caso nenhuma pontuação seja suficiente,
+                mostra produtos gerais.
+            */
+
+            if (recomendados.length === 0) {
+
+                recomendados =
+                    produtosBase.slice(0, 3);
+
+            }
+
+
+            mostrarProdutos(recomendados);
+
+        }
+
+
+ /* =========================================================
+   MOSTRAR PRODUTOS
+========================================================= */
+
+function mostrarProdutos(produtos) {
+
+    const container = document.getElementById("produtos");
+
+    container.innerHTML = "";
+
+    produtos.forEach(function(produto) {
+
+        const card = document.createElement("article");
+
+        card.className = "produto";
+
+        card.innerHTML = `
+
+            <div class="produto-imagem">
+
+                <img
+                    src="${produto.imagem || ''}"
+                    alt="${produto.nome || 'Produto'}"
+                    onerror="
+                        this.onerror = null;
+                        this.style.display = 'none';
+                        this.parentElement.querySelector('.produto-sem-imagem').style.display = 'flex';
+                    "
+                >
+
+                <div
+                    class="produto-sem-imagem"
+                    style="display: none;"
+                >
+                    P.E.
+                </div>
+
+            </div>
+
+            <div class="produto-conteudo">
+
+                <h4>
+                    ${produto.nome || ''}
+                </h4>
+
+                <p>
+                    ${produto.descricao || ''}
+                </p>
+
+                <div class="produto-motivo">
+                    <strong>Por que a P.E. indicou?</strong><br>
+                    ${produto.motivo || ''}
+                </div>
+
+                <div class="produto-rodape">
+
+                    <span class="preco">
+                        ${produto.preco || ''}
+                    </span>
+
+                    <button
+                        class="botao-carrinho"
+                        onclick="adicionarAoCarrinho('${produto.id}')"
+                    >
+                        Adicionar ao carrinho
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+        /* =========================================================
+           ADICIONAR AO CARRINHO
+        ========================================================= */
+
+        function adicionarAoCarrinho(id) {
+
+            const produto =
+                produtosBase.find(function(item) {
+
+                    return item.id === id;
+
+                });
+
+
+            if (!produto) {
+                return;
+            }
+
+
+            let carrinho = [];
+
+            try {
+
+                carrinho =
+                    JSON.parse(
+                        localStorage.getItem("carrinho")
+                    ) || [];
+
+            }
+
+            catch (erro) {
+
+                carrinho = [];
+
+            }
+
+
+            /*
+                Verifica se o produto já existe.
+            */
+
+            const existente =
+                carrinho.find(function(item) {
+
+                    return item.id === produto.id;
+
+                });
+
+
+            if (existente) {
+
+                existente.quantidade =
+                    (existente.quantidade || 1) + 1;
+
+            }
+
+            else {
+
+                carrinho.push({
+
+                    id: produto.id,
+                    nome: produto.nome,
+                    preco: produto.preco,
+                    imagem: produto.imagem,
+                    quantidade: 1
+
+                });
+
+            }
+
+
+            localStorage.setItem(
+                "carrinho",
+                JSON.stringify(carrinho)
+            );
+
+
+            mostrarMensagemCarrinho(
+                produto.nome + " foi adicionado ao carrinho."
+            );
+
+
+            /*
+                Atualiza contador caso ele exista
+                em alguma estrutura do seu site.
+            */
+
+            atualizarContador();
+
+        }
+
+
+        /* =========================================================
+           CONTADOR DO CARRINHO
+        ========================================================= */
+
+        function atualizarContador() {
+
+            let carrinho = [];
+
+            try {
+
+                carrinho =
+                    JSON.parse(
+                        localStorage.getItem("carrinho")
+                    ) || [];
+
+            }
+
+            catch (erro) {
+
+                carrinho = [];
+
+            }
+
+
+            const quantidade =
+                carrinho.reduce(function(total, produto) {
+
+                    return total + (produto.quantidade || 1);
+
+                }, 0);
+
+
+            const contador =
+                document.getElementById("contador-carrinho");
+
+
+            if (contador) {
+
+                contador.textContent =
+                    quantidade;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           MENSAGEM DO CARRINHO
+        ========================================================= */
+
+        function mostrarMensagemCarrinho(texto) {
+
+            const mensagem =
+                document.getElementById("mensagem-carrinho");
+
+            mensagem.textContent = texto;
+
+            mensagem.classList.add("mostrar");
+
+
+            setTimeout(function() {
+
+                mensagem.classList.remove("mostrar");
+
+            }, 2500);
+
+        }
+
+
+        /* =========================================================
+           REFAZER QUESTIONÁRIO
+        ========================================================= */
+
+        document
+            .getElementById("refazer")
+            .addEventListener("click", function() {
+
+                respostas.neurodivergencia = "";
+                respostas.dificuldade = "";
+                respostas.momento = "";
+                respostas.apoio = "";
+                respostas.prioridade = "";
+                respostas.preferencia = "";
+
+                perguntaAtual = 1;
+
+
+                opcoes.forEach(function(opcao) {
+
+                    opcao.classList.remove("selecionada");
+
+                });
+
+
+                resultado.classList.remove("mostrar");
+
+                document.querySelector(".topo-questionario")
+                    .style.display = "block";
+
+
+                perguntas.forEach(function(pergunta) {
+
+                    pergunta.style.display = "";
+
+                });
+
+
+                mostrarPergunta(1);
+
+            });
+
+
+        /* =========================================================
+           INICIALIZAÇÃO
+        ========================================================= */
+
+        atualizarProgresso();
+
+        atualizarContador();
+
+    </script>
+
+</body>
+</html>

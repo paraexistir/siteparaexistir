@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir - Apoio para neurodivergentes</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER -->
+    <!-- ========================================================= -->
+
+    <header class="header">
+        <div class="container header-container">
+
+            <div class="logo">
+                <a href="{{ url_for('index') }}" class="logo-link">
+
+                    <img src="{{ url_for('static', filename='img/logo.jpeg') }}"
+                        alt="Logo Para Existir"
+                        class="logo-img">
+
+                    <span class="logo-text">Para Existir</span>
+
+                </a>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="{{ url_for('index') }}#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('produtos') }}">
+                            Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#servicos">
+                            Serviços
+                        </a>
+
+
+                    <li>
+                        <a href="{{ url_for('index') }}#contato">
+                            Contato
+                        </a>
+                    </li>
+                                        </li>
+                        <a href="{{ url_for('ia') }}">
+                            P.E Rotina
+                        </a>
+                    </li>
+
+                    <li class="nav-divider"></li>
+
+                    <li>
+                        <a href="{{ url_for('login') }}" class="nav-login">
+                            <i class="fas fa-sign-in-alt"></i   >
+                            Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('cadastro') }}" class="nav-cadastro">
+                            <i class="fas fa-user-plus"></i>
+                            Cadastro
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+
+                <div class="carrinho-icone" id="carrinho-icone">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="carrinho-contador" id="carrinho-contador">
+                        0
+                    </span>
+                </div>
+
+                <a href="{{ url_for('index') }}#contato" class="btn-header">
+                    Fale conosco
+                </a>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ========================================================= -->
+    <!-- INÍCIO -->
+    <!-- ========================================================= -->
+
+    <section id="inicio" class="hero">
+
+        <div class="container hero-container">
+
+            <div class="hero-text">
+
+                <h2>
+                    Apoio para neurodivergentes e suas famílias
+                </h2>
+
+                <p>
+                    Soluções e materiais que ajudam no desenvolvimento,
+                    aprendizado e bem-estar de quem pensa e age de forma única.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#servicos" class="btn-primary">
+                        Conheça nossos serviços
+                    </a>
+
+                    <a href="#contato" class="btn-secondary">
+                        Fale conosco
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+
+                <img src="{{ url_for('static', filename='img/homekid.png') }}"
+                    alt="Criança sorrindo">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- PRODUTOS EM DESTAQUE -->
+    <!-- ========================================================= -->
+
+    <section class="produtos">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>Produtos em destaque</h2>
+
+                <div class="stars">
+                    ★ ★ ★
+                </div>
+
+            </div>
+
+
+            <div class="produtos-grid">
+
+
+                <!-- PRODUTO 1 -->
+
+                <div class="produto-card"
+                    data-nome="Pop it circular"
+                    data-preco="19.99"
+                    data-imagem="{{ url_for('static', filename='img/prod1.jpeg') }}">
+
+                    <img src="{{ url_for('static', filename='img/prod1.jpeg') }}"
+                        alt="Pop it circular">
+
+                    <p>Pop it circular</p>
+
+                    <span>R$19,99</span>
+
+                    <div class="btn-group">
+
+                        <a href="{{ url_for('static', filename='produtos/popit-circular.html') }}"
+                            class="btn-ver">
+                            Ver
+                        </a>
+
+                        <button class="btn-add-carrinho">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUTO 2 -->
+
+                <div class="produto-card"
+                    data-nome="Alfabeto educativo"
+                    data-preco="39.99"
+                    data-imagem="{{ url_for('static', filename='img/prod3.jpeg') }}">
+
+                    <img src="{{ url_for('static', filename='img/prod3.jpeg') }}"
+                        alt="Alfabeto educativo">
+
+                    <p>Alfabeto educativo</p>
+
+                    <span>R$39,99</span>
+
+                    <div class="btn-group">
+
+                        <a href="{{ url_for('static', filename='produtos/alfabeto-educativo.html') }}"
+                            class="btn-ver">
+                            Ver
+                        </a>
+
+                        <button class="btn-add-carrinho">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUTO 3 -->
+
+                <div class="produto-card"
+                    data-nome="Quadro de rotina sensorial"
+                    data-preco="49.99"
+                    data-imagem="{{ url_for('static', filename='img/prod9.jpeg') }}">
+
+                    <img src="{{ url_for('static', filename='img/prod9.jpeg') }}"
+                        alt="Quadro de rotina sensorial">
+
+                    <p>Quadro de rotina sensorial</p>
+
+                    <span>R$49,99</span>
+
+                    <div class="btn-group">
+
+                        <a href="{{ url_for('static', filename='produtos/quadro-rotina-sensorial.html') }}"
+                            class="btn-ver">
+                            Ver
+                        </a>
+
+                        <button class="btn-add-carrinho">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUTO 4 -->
+
+                <div class="produto-card"
+                    data-nome="Planner da Inclusão"
+                    data-preco="39.99"
+                    data-imagem="{{ url_for('static', filename='img/prod15.jpeg') }}">
+
+                    <img src="{{ url_for('static', filename='img/prod15.jpeg') }}"
+                        alt="Planner da Inclusão">
+
+                    <p>Planner da Inclusão</p>
+
+                    <span>R$39,99</span>
+
+                    <div class="btn-group">
+
+                        <a href="{{ url_for('static', filename='produtos/planner-inclusao.html') }}"
+                            class="btn-ver">
+                            Ver
+                        </a>
+
+                        <button class="btn-add-carrinho">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="ver-todos-container">
+
+                <a href="{{ url_for('produtos') }}"
+                    class="btn-ver-todos">
+
+                    <i class="fas fa-th-large"></i>
+                    Ver todos os produtos
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SOBRE NÓS -->
+    <!-- ========================================================= -->
+
+    <section id="sobre" class="sobre">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>Sobre nós</h2>
+
+                <h3>
+                    Mais do que produtos, criamos experiências que acolhem
+                </h3>
+
+            </div>
+
+
+            <div class="sobre-wrapper">
+
+                <div class="sobre-content">
+
+                    <div class="sobre-texto">
+
+                        <p>
+                            A Para Existir nasceu com o propósito de oferecer
+                            apoio real para pessoas neurodivergentes e suas famílias,
+                            respeitando cada forma única de sentir, aprender e se expressar.
+                        </p>
+
+                        <p>
+                            Nossos produtos e serviços são pensados para estimular
+                            o desenvolvimento com conforto, segurança e inclusão,
+                            tornando o dia a dia mais leve e acessível.
+                        </p>
+
+
+                        <div class="sobre-frase-destaque">
+
+                            <span class="aspas">
+                                "
+                            </span>
+
+                            <h3>
+                                Cada pessoa aprende de um jeito.
+                                Nosso papel é respeitar isso.
+                            </h3>
+
+                            <span class="aspas">
+                                "
+                            </span>
+
+                        </div>
+
+
+                        <div class="sobre-btn-container">
+
+                            <a href="{{ url_for('equipe') }}"
+                                class="btn-equipe">
+
+                                <i class="fas fa-users"></i>
+                                Conheça nossa equipe
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="sobre-imagem">
+
+                        <img src="{{ url_for('static', filename='img/kidnos.png') }}"
+                            alt="Criança feliz brincando">
+
+                    </div>
+
+                </div>
+
+
+                <div class="sobre-diferenciais">
+
+
+                    <div class="dif">
+
+                        <div class="dif-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+
+                        <h3>
+                            Inclusão real
+                        </h3>
+
+                        <p>
+                            Respeitamos cada individualidade sem padrões rígidos.
+                        </p>
+
+                    </div>
+
+
+                    <div class="dif">
+
+                        <div class="dif-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+
+                        <h3>
+                            Base profissional
+                        </h3>
+
+                        <p>
+                            Produtos pensados com conhecimento especializado.
+                        </p>
+
+                    </div>
+
+
+                    <div class="dif">
+
+                        <div class="dif-icon">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+
+                        <h3>
+                            Conforto sensorial
+                        </h3>
+
+                        <p>
+                            Foco no bem-estar e na redução de estímulos negativos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- CATEGORIAS -->
+    <!-- ========================================================= -->
+
+    <section id="categorias" class="categorias">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>
+                    Compre por tipo de brinquedo
+                </h2>
+
+                <div class="stars">
+                    ★ ★ ★
+                </div>
+
+            </div>
+
+
+            <div class="categorias-grid">
+
+
+                <!-- CATEGORIA 1 -->
+
+                <a href="{{ url_for('static', filename='categorias/estimulo-tatil.html') }}"
+                    class="categoria">
+
+                    <img src="{{ url_for('static', filename='img/categoria1.jpeg') }}"
+                        alt="Estímulo Tátil">
+
+                    <h3>
+                        Estímulo Tátil
+                    </h3>
+
+                    <p>
+                        Fidgets, Squish
+                    </p>
+
+                </a>
+
+
+                <!-- CATEGORIA 2 -->
+
+                <a href="{{ url_for('static', filename='categorias/estimulo-auditivo.html') }}"
+                    class="categoria">
+
+                    <img src="{{ url_for('static', filename='img/categoria2.jpeg') }}"
+                        alt="Estímulo Auditivo">
+
+                    <h3>
+                        Estímulo Auditivo
+                    </h3>
+
+                    <p>
+                        Fones, sons
+                    </p>
+
+                </a>
+
+
+                <!-- CATEGORIA 3 -->
+
+                <a href="{{ url_for('static', filename='categorias/estimulo-visual.html') }}"
+                    class="categoria">
+
+                    <img src="{{ url_for('static', filename='img/categoria3.jpeg') }}"
+                        alt="Estímulo Visual">
+
+                    <h3>
+                        Estímulo Visual
+                    </h3>
+
+                    <p>
+                        Luzes, cores
+                    </p>
+
+                </a>
+
+
+                <!-- CATEGORIA 4 -->
+
+                <a href="{{ url_for('static', filename='categorias/estimulo-oral.html') }}"
+                    class="categoria">
+
+                    <img src="{{ url_for('static', filename='img/categoria4.jpeg') }}"
+                        alt="Estímulo Oral">
+
+                    <h3>
+                        Estímulo Oral
+                    </h3>
+
+                    <p>
+                        Mordedores
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SERVIÇOS -->
+    <!-- ========================================================= -->
+
+    <section id="servicos" class="servicos">
+
+        <div class="container">
+
+            <div class="section-header">
+
+                <h2>
+                    Nossos serviços
+                </h2>
+
+                <h3>
+                    Recursos pensados para apoiar cada etapa do desenvolvimento
+                </h3>
+
+            </div>
+
+
+            <div class="servicos-wrapper">
+
+
+                <div class="servicos-grid">
+
+
+                    <!-- SERVIÇO 1 -->
+
+                    <div class="servico-card">
+
+                        <div class="servico-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+
+                        <h3>
+                            Materiais educativos
+                        </h3>
+
+                        <p>
+                            Recursos didáticos adaptados para diferentes
+                            necessidades de aprendizagem.
+                        </p>
+
+                        <a href="#categorias"
+                            class="servico-btn">
+
+                            Saiba mais
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- SERVIÇO 2 -->
+
+                    <div class="servico-card">
+
+                        <div class="servico-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+
+                        <h3>
+                            Produtos sensoriais
+                        </h3>
+
+                        <p>
+                            Ferramentas para estímulo e conforto
+                            sensorial no dia a dia.
+                        </p>
+
+                        <a href="{{ url_for('produtos') }}"
+                            class="servico-btn">
+
+                            Saiba mais
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- SERVIÇO 3 -->
+
+                    <div class="servico-card">
+
+                        <div class="servico-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+
+                        <h3>
+                            Atendimento especializado
+                        </h3>
+
+                        <p>
+                            Apoio acolhedor para famílias e crianças
+                            em todas as etapas.
+                        </p>
+
+                        <a href="#contato"
+                            class="servico-btn">
+
+                            Saiba mais
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="servicos-imagem">
+
+                    <img src="{{ url_for('static', filename='img/kidserv.png') }}"
+                        alt="Crianças brincando juntas">
+
+                    <div class="servicos-overlay">
+
+                        <p>
+                            Transformando vidas com acolhimento e respeito
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- CONTATO -->
+    <!-- ========================================================= -->
+
+    <section id="contato" class="contato">
+
+        <div class="container contato-container">
+
+
+            <div class="contato-text">
+
+                <span>
+                    Contato
+                </span>
+
+                <h2>
+                    Vamos conversar?
+                </h2>
+
+                <p>
+                    Entre em contato para conhecer nossos serviços
+                    e encontrar soluções ideais para sua família.
+                </p>
+
+            </div>
+
+
+            <form class="contato-form"
+                id="contato-form"
+                action="{{ url_for('salvar_contato') }}"
+                method="POST">
+
+
+                <div class="input-group">
+
+                    <label>
+                        Seu nome
+                    </label>
+
+                    <input type="text"
+                        name="nome"
+                        id="contato-nome"
+                        placeholder="Digite seu nome"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Seu e-mail
+                    </label>
+
+                    <input type="email"
+                        name="email"
+                        id="contato-email"
+                        placeholder="exemplo@email.com"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Sua mensagem
+                    </label>
+
+                    <textarea id="contato-mensagem"
+                        name="mensagem"
+                        placeholder="Digite sua mensagem"
+                        required></textarea>
+
+                </div>
+
+
+                <button type="submit"
+                    class="btn-enviar">
+
+                    Enviar mensagem
+
+                </button>
+
+            </form>
+
+
+            <div id="contato-aviso"
+                class="contato-aviso"
+                style="display: none;">
+
+                <i class="fas fa-check-circle"></i>
+
+                <p>
+                    Mensagem enviada com sucesso!
+                </p>
+
+                <p class="contato-aviso-sub">
+                    Entraremos em contato em breve.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ========================================================= -->
+
+    <div class="carrinho-modal"
+        id="carrinho-modal">
+
+        <div class="carrinho-modal-content">
+
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span class="carrinho-fechar"
+                    id="carrinho-fechar">
+
+                    &times;
+
+                </span>
+
+            </div>
+
+
+            <div class="carrinho-lista"
+                id="carrinho-lista">
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>
+                    Total:
+                </span>
+
+                <span id="carrinho-total">
+                    R$0,00
+                </span>
+
+            </div>
+
+
+            <button class="btn-finalizar"
+                id="btn-finalizar">
+
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- RODAPÉ -->
+    <!-- ========================================================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div>
+
+                <h3>
+                    Para Existir
+                </h3>
+
+                <p>
+                    Rua do Oratório, nº 401 - Mooca,
+                    São Paulo - SP
+                </p>
+
+                <p>
+                    contato.paraexistir@gmail.com
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Informações
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="{{ url_for('politica_privacidade') }}">
+                            Política de Privacidade
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('termos_condicoes') }}">
+                            Termos e Condições
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre nós
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Lista de produtos
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="{{ url_for('static', filename='categorias/estimulo-tatil.html') }}">
+                            Estímulo Tátil
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('static', filename='categorias/estimulo-auditivo.html') }}">
+                            Estímulo Auditivo
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('static', filename='categorias/estimulo-visual.html') }}">
+                            Estímulo Visual
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('static', filename='categorias/estimulo-oral.html') }}">
+                            Estímulo Oral
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Redes Sociais
+                </h4>
+
+                <div class="social-links">
+
+                    <a href="https://www.instagram.com/para.existir"
+                        target="_blank">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                    <a href="https://www.tiktok.com/@para.existir"
+                        target="_blank">
+
+                        <i class="fab fa-tiktok"></i>
+
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/para-existir-509ba941"
+                        target="_blank">
+
+                        <i class="fab fa-linkedin-in"></i>
+
+                    </a>
+
+                    <a href="https://youtube.com/@para.existir"
+                        target="_blank">
+
+                        <i class="fab fa-youtube"></i>
+
+                    </a>
+
+                    <a href="https://www.facebook.com/share/1Cg7wqjr7V/"
+                        target="_blank">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+                </div>
+
+
+                <div class="footer-newsletter">
+
+                    <h4 style="margin-top: 20px;">
+                        Inscreva-se
+                    </h4>
+
+                    <form class="newsletter">
+
+                        <input type="email"
+                            placeholder="Seu e-mail">
+
+                        <button type="submit">
+                            Enviar
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 Para Existir.
+                    Todos os direitos reservados.
+                </p>
+
+                <p class="footer-data">
+                    Última atualização: 24/06/2026
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DO CARRINHO -->
+    <!-- ========================================================= -->
+
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DOS PRODUTOS -->
+    <!-- ========================================================= -->
+
+    <script>
+
+        const botoesComprar =
+            document.querySelectorAll('.btn-add-carrinho');
+
+
+        botoesComprar.forEach(function (btn) {
+
+            btn.addEventListener('click', function (e) {
+
+                e.stopPropagation();
+
+                const card =
+                    this.closest('.produto-card');
+
+                const nome =
+                    card.dataset.nome;
+
+                const preco =
+                    parseFloat(card.dataset.preco);
+
+                const imagem =
+                    card.dataset.imagem;
+
+
+                if (window.adicionarAoCarrinho) {
+
+                    window.adicionarAoCarrinho(
+                        nome,
+                        preco,
+                        imagem
+                    );
+
+                } else {
+
+                    console.error(
+                        'Função adicionarAoCarrinho não encontrada!'
+                    );
+
+                }
+
+            });
+
+        });
+
+
+        const cards =
+            document.querySelectorAll('.produto-card');
+
+        const grid =
+            document.querySelector('.produtos-grid');
+
+
+        cards.forEach(function (card) {
+
+            card.addEventListener('click', function (e) {
+
+                if (
+                    e.target.classList.contains('btn-add-carrinho') ||
+                    e.target.closest('.btn-ver')
+                ) {
+
+                    return;
+
+                }
+
+
+                e.stopPropagation();
+
+
+                const isActive =
+                    this.classList.contains('ativo');
+
+
+                cards.forEach(function (c) {
+
+                    c.classList.remove('ativo');
+
+                });
+
+
+                grid.classList.remove('ativo');
+
+
+                if (!isActive) {
+
+                    this.classList.add('ativo');
+
+                    grid.classList.add('ativo');
+
+                }
+
+            });
+
+        });
+
+
+        document.addEventListener('click', function () {
+
+            cards.forEach(function (c) {
+
+                c.classList.remove('ativo');
+
+            });
+
+            grid.classList.remove('ativo');
+
+        });
+
+    </script>
+
+</body>
+
+</html>

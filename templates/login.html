@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Para Existir</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="container header-container">
+
+            <div class="logo">
+
+                <a href="{{ url_for('index') }}"
+                   class="logo-link">
+
+                    <img
+                        src="{{ url_for('static', filename='img/logo.jpeg') }}"
+                        alt="Logo Para Existir"
+                        class="logo-img"
+                    >
+
+                    <span class="logo-text">
+                        Para Existir
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <nav>
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="{{ url_for('index') }}#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('produtos') }}">
+                            Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#servicos">
+                            Serviços
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#contato">
+                            Contato
+                        </a>
+                    </li>
+
+                    <li class="nav-divider"></li>
+
+                    <li>
+                        <a href="{{ url_for('login') }}"
+                           class="nav-login">
+
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('cadastro') }}"
+                           class="nav-cadastro">
+
+                            <i class="fas fa-user-plus"></i>
+                            Cadastro
+
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <div class="carrinho-icone"
+                     id="carrinho-icone">
+
+                    <i class="fas fa-shopping-cart"></i>
+
+                    <span
+                        class="carrinho-contador"
+                        id="carrinho-contador">
+                        0
+                    </span>
+
+                </div>
+
+                <a
+                    href="{{ url_for('index') }}#contato"
+                    class="btn-header"
+                >
+                    Fale conosco
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         LOGIN
+    ====================================================== -->
+
+    <section class="auth-page">
+
+        <div class="container">
+
+            <div class="auth-box">
+
+                <div class="auth-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+
+                <h1>
+                    Bem-vindo de volta
+                </h1>
+
+                <p>
+                    Faça login para acessar sua conta
+                </p>
+
+
+<form
+    class="auth-form"
+    id="login-form"
+    method="POST"
+    action="{{ url_for('login') }}"
+>
+
+    <div class="input-group">
+
+        <label for="login-email">
+            <i class="fas fa-envelope"></i>
+            E-mail
+        </label>
+
+        <input
+            type="email"
+            id="login-email"
+            name="email"
+            placeholder="seu@email.com"
+            autocomplete="email"
+            required
+        >
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label for="login-senha">
+            <i class="fas fa-lock"></i>
+            Senha
+        </label>
+
+        <input
+            type="password"
+            id="login-senha"
+            name="senha"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+        >
+
+    </div>
+
+
+    <div class="auth-options">
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                id="lembrar"
+                name="lembrar"
+            >
+
+            Lembrar-me
+
+        </label>
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn-primary btn-auth"
+    >
+        Entrar
+    </button>
+
+</form>
+
+
+
+                <p class="auth-link">
+
+                    Não tem uma conta?
+
+                    <a href="{{ url_for('cadastro') }}">
+                        Cadastre-se
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MODAL DO CARRINHO
+    ====================================================== -->
+
+    <div
+        class="carrinho-modal"
+        id="carrinho-modal"
+    >
+
+        <div class="carrinho-modal-content">
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span
+                    class="carrinho-fechar"
+                    id="carrinho-fechar"
+                >
+                    &times;
+                </span>
+
+            </div>
+
+
+            <div
+                class="carrinho-lista"
+                id="carrinho-lista"
+            >
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>
+                    Total:
+                </span>
+
+                <span id="carrinho-total">
+                    R$0,00
+                </span>
+
+            </div>
+
+
+            <button
+                class="btn-finalizar"
+                id="btn-finalizar"
+            >
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <h3>
+                    Para Existir
+                </h3>
+
+                <p>
+                    Rua do Oratório, nº 401 - Mococa, São Paulo - SP
+                </p>
+
+                <p>
+                    contato.paraexistir@gmail.com
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Informações
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="{{ url_for('index') }}">
+                            Política de Privacidade
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}">
+                            Termos e Condições
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre nós
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Lista de produtos
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="/categorias/estimulo-tatil.html">
+                            Estímulo Tátil
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/categorias/estimulo-auditivo.html">
+                            Estímulo Auditivo
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/categorias/estimulo-visual.html">
+                            Estímulo Visual
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/categorias/estimulo-oral.html">
+                            Estímulo Oral
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Redes Sociais
+                </h4>
+
+                <div class="social-links">
+
+                    <a
+                        href="https://www.instagram.com/para.existir"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@para.existir"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/para-existir-509ba9418"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                    <a
+                        href="https://youtube.com/@para.existir"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/share/1Cg7wqjr7V/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="footer-newsletter">
+
+                    <h4 style="margin-top: 20px;">
+                        Inscreva-se
+                    </h4>
+
+                    <form class="newsletter">
+
+                        <input
+                            type="email"
+                            placeholder="Seu e-mail"
+                        >
+
+                        <button type="submit">
+                            Enviar
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; 2026 Para Existir.
+                    Todos os direitos reservados.
+                </p>
+
+                <p class="footer-data">
+                    Última atualização: 24/06/2026
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+    <script>
+
+        document
+            .getElementById("login-form")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                alert("Login realizado com sucesso!");
+
+                window.location.href =
+                    "{{ url_for('index') }}";
+
+            });
+
+    </script>
+
+</body>
+</html>

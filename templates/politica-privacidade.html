@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir | Política de Privacidade</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos específicos para páginas de termos */
+        .termos-page {
+            padding: 60px 0 80px;
+        }
+
+        .termos-page h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--texto, #4d4450);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .termos-page .subtitle {
+            text-align: center;
+            color: var(--texto-claro, #7d7480);
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+
+        .termos-container {
+            max-width: 820px;
+            margin: 0 auto;
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .termos-container h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--rosa, #d96c8f);
+            margin: 32px 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--rosa-claro, #f8e8ee);
+        }
+
+        .termos-container h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .termos-container p {
+            color: var(--texto, #4d4450);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .termos-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 16px;
+        }
+
+        .termos-container ul li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+            color: var(--texto, #4d4450);
+            line-height: 1.6;
+        }
+
+        .termos-container ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--rosa, #d96c8f);
+            font-size: 0.9rem;
+        }
+
+        .termos-container .highlight {
+            background: var(--rosa-claro, #f8e8ee);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--rosa, #d96c8f);
+        }
+
+        .termos-container .contato-info {
+            background: var(--fundo, #fffaf8);
+            padding: 20px 24px;
+            border-radius: 12px;
+            border-left: 4px solid var(--rosa, #d96c8f);
+            margin-top: 16px;
+        }
+
+        .termos-container .contato-info p {
+            margin-bottom: 4px;
+        }
+
+        .termos-container .contato-info i {
+            color: var(--rosa, #d96c8f);
+            width: 24px;
+        }
+
+        .termos-container .data-atualizacao {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--texto-claro, #7d7480);
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--borda, #eee4e8);
+        }
+
+        @media (max-width: 768px) {
+            .termos-container {
+                padding: 24px;
+            }
+
+            .termos-page h1 {
+                font-size: 2rem;
+            }
+
+            .termos-container h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .termos-container {
+                padding: 16px;
+            }
+
+            .termos-page h1 {
+                font-size: 1.6rem;
+            }
+
+            .termos-container ul li {
+                padding-left: 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+ <header class="header">
+        <div class="container header-container">
+
+            <div class="logo">
+                <a href="{{ url_for('index') }}" class="logo-link">
+
+                    <img src="{{ url_for('static', filename='img/logo.jpeg') }}"
+                        alt="Logo Para Existir"
+                        class="logo-img">
+
+                    <span class="logo-text">Para Existir</span>
+
+                </a>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="{{ url_for('index') }}#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('produtos') }}">
+                            Produtos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#sobre">
+                            Sobre
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#servicos">
+                            Serviços
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('index') }}#contato">
+                            Contato
+                        </a>
+                    </li>
+
+                    <li class="nav-divider"></li>
+
+                    <li>
+                        <a href="{{ url_for('login') }}" class="nav-login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url_for('cadastro') }}" class="nav-cadastro">
+                            <i class="fas fa-user-plus"></i>
+                            Cadastro
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="carrinho-icone" id="carrinho-icone">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="carrinho-contador" id="carrinho-contador">0</span>
+                </div>
+                <a href="index.html#contato" class="btn-header">Fale conosco</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== POLÍTICA DE PRIVACIDADE ===== -->
+    <section class="termos-page">
+        <div class="container">
+            <h1>Política de Privacidade</h1>
+            <p class="subtitle">A sua privacidade é importante para nós</p>
+
+            <div class="termos-container">
+
+                <p>Na <strong>Para Existir</strong> (ou redes sociais/loja da empresa), a sua privacidade é importante para nós. Esta Política de Privacidade explica como coletamos, usamos e protegemos seus dados.</p>
+
+                <h2>1. Dados que coletamos</h2>
+                <p>Podemos coletar as seguintes informações:</p>
+                <ul>
+                    <li>Nome completo</li>
+                    <li>Telefone / WhatsApp</li>
+                    <li>E-mail</li>
+                    <li>Endereço de entrega</li>
+                    <li>Dados de pagamento (processados por plataformas seguras)</li>
+                    <li>Informações fornecidas voluntariamente sobre necessidades de acessibilidade ou suporte sensorial</li>
+                </ul>
+
+                <h2>2. Como usamos seus dados</h2>
+                <p>Usamos seus dados para:</p>
+                <ul>
+                    <li>Processar compras e entregas</li>
+                    <li>Responder dúvidas e solicitações</li>
+                    <li>Oferecer suporte personalizado</li>
+                    <li>Melhorar nossos produtos e serviços</li>
+                    <li>Enviar novidades, promoções ou conteúdos (com consentimento)</li>
+                </ul>
+
+                <h2>3. Compartilhamento de dados</h2>
+                <p>A Para Existir <strong>não vende dados pessoais</strong>.</p>
+                <p>Se necessário, podemos compartilhar informações com:</p>
+                <ul>
+                    <li>Transportadoras</li>
+                    <li>Plataformas de pagamento</li>
+                    <li>Sistemas de atendimento e gestão</li>
+                </ul>
+                <p>Sempre com foco na segurança e na prestação do serviço.</p>
+
+                <h2>4. Segurança</h2>
+                <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra:</p>
+                <ul>
+                    <li>Acesso não autorizado</li>
+                    <li>Alteração indevida</li>
+                    <li>Vazamentos</li>
+                    <li>Uso indevido</li>
+                </ul>
+
+                <h2>5. Seus direitos (LGPD)</h2>
+                <p>Conforme a Lei Geral de Proteção de Dados (LGPD) no Brasil, você pode solicitar:</p>
+                <ul>
+                    <li>Acesso aos seus dados</li>
+                    <li>Correção de informações</li>
+                    <li>Exclusão de dados</li>
+                    <li>Revogação de consentimento</li>
+                </ul>
+                <p>Solicitações podem ser feitas pelo e-mail de atendimento da empresa.</p>
+
+                <h2>6. Cookies</h2>
+                <p>Caso utilizemos site ou loja online, cookies podem ser usados para:</p>
+                <ul>
+                    <li>Melhorar navegação</li>
+                    <li>Salvar preferências</li>
+                    <li>Gerar análises de uso</li>
+                </ul>
+
+                <h2>7. Contato</h2>
+                <p>Em caso de dúvidas:</p>
+
+                <div class="contato-info">
+                    <p><strong>Para Existir</strong></p>
+                    <p><i class="fas fa-envelope"></i> E-mail: contato.paraexistir@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: (11) 91234-5687</p>
+                </div>
+
+                <p class="data-atualizacao">Última atualização: 24/06/2026</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL DO CARRINHO ===== -->
+    <div class="carrinho-modal" id="carrinho-modal">
+        <div class="carrinho-modal-content">
+            <div class="carrinho-modal-header">
+                <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
+                <span class="carrinho-fechar" id="carrinho-fechar">&times;</span>
+            </div>
+            <div class="carrinho-lista" id="carrinho-lista">
+                <p class="carrinho-vazio">🛒 Seu carrinho está vazio</p>
+            </div>
+            <div class="carrinho-total">
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
+            </div>
+            <button class="btn-finalizar" id="btn-finalizar">
+                <i class="fab fa-whatsapp"></i> Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Para Existir</h3>
+                <p>Rua do Oratório, nº 401 - Mococa, São Paulo - SP</p>
+                <p>contato.paraexistir@gmail.com</p>
+            </div>
+
+            <div>
+                <h4>Informações</h4>
+                <ul>
+                    <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos-condicoes.html">Termos e Condições</a></li>
+                    <li><a href="index.html#sobre">Sobre nós</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Lista de produtos</h4>
+                <ul>
+                    <li><a href="/categorias/estimulo-tatil.html">Estímulo Tátil</a></li>
+                    <li><a href="/categorias/estimulo-auditivo.html">Estímulo Auditivo</a></li>
+                    <li><a href="/categorias/estimulo-visual.html">Estímulo Visual</a></li>
+                    <li><a href="/categorias/estimulo-oral.html">Estímulo Oral</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Redes Sociais</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/para.existir" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@para.existir" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/in/para-existir-509ba9418" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@para.existir" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/share/1Cg7wqjr7V/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4 style="margin-top: 20px;">Inscreva-se</h4>
+                    <form class="newsletter">
+                        <input type="email" placeholder="Seu e-mail">
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Para Existir. Todos os direitos reservados.</p>
+                <p class="footer-data">Última atualização: 24/06/2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="carrinho.js"></script>
+
+</body>
+
+</html>
