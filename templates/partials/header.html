@@ -1,0 +1,179 @@
+<!-- ========================================================= -->
+<!-- HEADER -->
+<!-- ========================================================= -->
+<header class="header">
+    <div class="container header-container">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <a href="{{ url_for('index') }}" class="logo-link">
+
+                <img src="{{ url_for('static', filename='img/logo.jpeg') }}"
+                    alt="Logo Para Existir"
+                    class="logo-img">
+
+                <span class="logo-text">Para Existir</span>
+
+            </a>
+        </div>
+
+
+        <!-- BOTÃO HAMBÚRGUER - MOBILE -->
+        <button class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Abrir menu"
+                aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <!-- NAVEGAÇÃO -->
+        <nav class="main-nav" id="main-nav">
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="{{ url_for('index') }}#inicio">
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('produtos') }}">
+                        Produtos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('index') }}#sobre">
+                        Sobre
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('index') }}#servicos">
+                        Serviços
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('index') }}#contato">
+                        Contato
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('ia') }}">
+                        P.E Rotina
+                    </a>
+                </li>
+
+                <li class="nav-divider"></li>
+
+                <li>
+                    <a href="{{ url_for('login') }}" class="nav-login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('cadastro') }}" class="nav-cadastro">
+                        <i class="fas fa-user-plus"></i>
+                        Cadastro
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- AÇÕES DO HEADER -->
+        <div class="header-actions">
+
+            <div class="carrinho-icone" id="carrinho-icone">
+
+                <i class="fas fa-shopping-cart"></i>
+
+                <span class="carrinho-contador" id="carrinho-contador">
+                    0
+                </span>
+
+            </div>
+
+            <a href="{{ url_for('index') }}#contato"
+               class="btn-header">
+
+                Fale conosco
+
+            </a>
+
+        </div>
+
+    </div>
+</header>
+
+
+<!-- ========================================================= -->
+<!-- SCRIPT DO MENU HAMBÚRGUER (funciona em todas as páginas) -->
+<!-- ========================================================= -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (!menuToggle || !mainNav) return;
+
+    menuToggle.addEventListener('click', function () {
+
+        const aberto = mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+
+        menuToggle.setAttribute('aria-expanded', aberto);
+
+    });
+
+    /* Fechar o menu ao clicar em um link */
+    const linksMenu = document.querySelectorAll('.nav-links a');
+
+    linksMenu.forEach(function (link) {
+        link.addEventListener('click', function () {
+            mainNav.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    /* Fechar o menu ao clicar fora */
+    document.addEventListener('click', function (event) {
+
+        const clicouNoMenu = mainNav.contains(event.target);
+        const clicouNoBotao = menuToggle.contains(event.target);
+
+        if (!clicouNoMenu && !clicouNoBotao &&
+            mainNav.classList.contains('active')) {
+
+            mainNav.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+
+        }
+    });
+
+    /* Se voltar para desktop, fecha o menu */
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            mainNav.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+});
+</script>

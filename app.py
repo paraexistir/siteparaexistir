@@ -1,275 +1,238 @@
-from flask import Flask, render_template, request, redirect, url_for
-import mysql.connector
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+import json
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__)
-
-
-
-# =========================================================
-# CONEXÃO COM O BANCO DE DADOS
-# =========================================================
-
-def conectar():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME"),
-        port=int(os.getenv("DB_PORT", 3306))
-    )
+app.secret_key = "para-existir-chave-secreta-2026"  # troque por algo seguro
 
 
 # =========================================================
-# PÁGINA INICIAL
+# ARQUIVOS DE DADOS (JSON simples)
+# =========================================================
+
+ARQUIVO_USUARIOS = "usuarios.json"
+ARQUIVO_CONTATOS = "contatos.json"
+
+
+def carregar_json(caminho):
+    """Carrega um arquivo JSON ou retorna lista vazia."""
+    if not os.path.exists(caminho):
+        return []
+    try:
+        with open(caminho, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return []
+
+
+def salvar_json(caminho, dados):
+    """Salva dados em um arquivo JSON."""
+    with open(caminho, "w", encoding="utf-8") as f:
+        json.dump(dados, f, ensure_ascii=False, indent=2)
+
+
+# =========================================================
+# ROTAS PRINCIPAIS
 # =========================================================
 
 @app.route("/")
 def index():
+    """Página inicial."""
     return render_template("index.html")
 
 
-# =========================================================
-# PRODUTOS
-# =========================================================
-
 @app.route("/produtos")
 def produtos():
+    """Página de listagem de produtos."""
     return render_template("produtos.html")
 
-# =========================================================
-# ia
-# =========================================================
+
+@app.route("/equipe")
+def equipe():
+    """Página da equipe."""
+    return render_template("equipe.html")
+
 
 @app.route("/ia")
 def ia():
+    """Página da P.E. Rotina (assistente)."""
     return render_template("ia.html")
 
 
 # =========================================================
-# LOGIN
-# =========================================================
-# =========================================================
-# LOGIN
+# ROTAS DE AUTENTICAÇÃO
 # =========================================================
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-
-    # ---------------------------------------------------------
-    # ACESSO À PÁGINA DE LOGIN
-    # ---------------------------------------------------------
-
-    if request.method == "GET":
-        return render_template("login.html")
-
-
-    # ---------------------------------------------------------
-    # ENVIO DO FORMULÁRIO
-    # ---------------------------------------------------------
-
-    email = request.form.get("email", "").strip()
-    senha = request.form.get("senha", "")
-
-
-    # ---------------------------------------------------------
-    # VALIDAÇÃO
-    # ---------------------------------------------------------
-
-    if not email or not senha:
-
-        return render_template(
-            "login.html",
-            erro="Preencha o e-mail e a senha."
-        )
-
-
-    conexao = None
-    cursor = None
-
-
-    try:
-
-        # -----------------------------------------------------
-        # CONECTA AO BANCO
-        # -----------------------------------------------------
-
-        conexao = conectar()
-
-        cursor = conexao.cursor()
-
-
-        # -----------------------------------------------------
-        # PROCURA O USUÁRIO
-        # -----------------------------------------------------
-
-        cursor.execute(
-            """
-            SELECT id, nome, email, senha
-            FROM usuarios
-            WHERE email = %s
-            """,
-            (email,)
-        )
-
-        usuario = cursor.fetchone()
-
-
-        # -----------------------------------------------------
-        # VERIFICA USUÁRIO E SENHA
-        # -----------------------------------------------------
-
-        if usuario:
-
-            id_usuario = usuario[0]
-            nome_usuario = usuario[1]
-            email_usuario = usuario[2]
-            senha_banco = usuario[3]
-
-
-            if senha == senha_banco:
-
-                print(
-                    "Login realizado:",
-                    email_usuario
-                )
-
-                return redirect(url_for("index"))
-
-
-        # -----------------------------------------------------
-        # LOGIN INCORRETO
-        # -----------------------------------------------------
-
-        return render_template(
-            "login.html",
-            erro="E-mail ou senha incorretos."
-        )
-
-
-    except mysql.connector.Error as erro:
-
-        print(
-            "Erro ao realizar login:",
-            erro
-        )
-
-        return render_template(
-            "login.html",
-            erro="Erro ao conectar ao banco de dados."
-        )
-
-
-    finally:
-
-        if cursor:
-            cursor.close()
-
-        if conexao:
-            conexao.close()
-
-# =========================================================
-# CADASTRO
-# =========================================================
-
-@app.route("/cadastro", methods=["GET"])
+@app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
+    """Página e processamento do cadastro."""
+
+    if request.method == "POST":
+
+        nome = request.form.get("nome", "").strip()
+        email = request.form.get("email", "").strip().lower()
+        senha = request.form.get("senha", "")
+        confirmar = request.form.get("confirmar", "")  # opcional
+
+        # -------------------------------
+        # VALIDAÇÕES
+        # -------------------------------
+
+        if not nome or not email or not senha:
+            flash("Preencha todos os campos.", "erro")
+            return redirect(url_for("cadastro"))
+
+        if len(senha) < 6:
+            flash("A senha deve ter no mínimo 6 caracteres.", "erro")
+            return redirect(url_for("cadastro"))
+
+        if confirmar and senha != confirmar:
+            flash("As senhas não coincidem.", "erro")
+            return redirect(url_for("cadastro"))
+
+        # -------------------------------
+        # VERIFICA SE E-MAIL JÁ EXISTE
+        # -------------------------------
+
+        usuarios = carregar_json(ARQUIVO_USUARIOS)
+
+        if any(u.get("email") == email for u in usuarios):
+            flash("Este e-mail já está cadastrado.", "erro")
+            return redirect(url_for("cadastro"))
+
+        # -------------------------------
+        # SALVA NOVO USUÁRIO
+        # -------------------------------
+
+        usuarios.append({
+            "nome": nome,
+            "email": email,
+            "senha": generate_password_hash(senha)
+        })
+
+        salvar_json(ARQUIVO_USUARIOS, usuarios)
+
+        flash("Cadastro realizado com sucesso! Faça login.", "sucesso")
+        return redirect(url_for("login"))
+
     return render_template("cadastro.html")
 
 
-@app.route("/salvar_usuarios", methods=["POST"])
-def salvar_usuarios():
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Página e processamento do login."""
 
-    nome = request.form["nome"]
-    email = request.form["email"]
-    senha = request.form["senha"]
+    if request.method == "POST":
 
-    conexao = conectar()
-    cursor = conexao.cursor()
+        email = request.form.get("email", "").strip().lower()
+        senha = request.form.get("senha", "")
+        lembrar = request.form.get("lembrar")
 
-    cursor.execute(
-        """
-        INSERT INTO usuarios (nome, email, senha)
-        VALUES (%s, %s, %s)
-        """,
-        (nome, email, senha)
-    )
+        # -------------------------------
+        # VALIDAÇÃO BÁSICA
+        # -------------------------------
 
-    conexao.commit()
+        if not email or not senha:
+            flash("Preencha e-mail e senha.", "erro")
+            return redirect(url_for("login"))
 
-    cursor.close()
-    conexao.close()
+        # -------------------------------
+        # PROCURA O USUÁRIO
+        # -------------------------------
+
+        usuarios = carregar_json(ARQUIVO_USUARIOS)
+
+        usuario = next(
+            (u for u in usuarios if u.get("email") == email),
+            None
+        )
+
+        # -------------------------------
+        # VERIFICA SENHA
+        # -------------------------------
+
+        if usuario and check_password_hash(usuario.get("senha", ""), senha):
+
+            session["usuario_nome"] = usuario["nome"]
+            session["usuario_email"] = usuario["email"]
+
+            if lembrar:
+                session.permanent = True
+
+            flash(f"Bem-vindo(a), {usuario['nome']}!", "sucesso")
+            return redirect(url_for("index"))
+
+        else:
+            flash("E-mail ou senha incorretos.", "erro")
+            return redirect(url_for("login"))
 
     return render_template("login.html")
 
 
-# =========================================================
-# CONTATOS
-# =========================================================
+@app.route("/logout")
+def logout():
+    """Encerra a sessão do usuário."""
+    session.clear()
+    flash("Você saiu da sua conta.", "sucesso")
+    return redirect(url_for("index"))
 
-@app.route("/contatos", methods=["GET"])
-def contatos():
-    return render_template("index.html")
 
+# =========================================================
+# ROTA DE CONTATO
+# =========================================================
 
 @app.route("/salvar_contato", methods=["POST"])
 def salvar_contato():
+    """Salva a mensagem enviada pelo formulário de contato."""
 
-    nome = request.form["nome"]
-    email = request.form["email"]
-    mensagem = request.form.get("mensagem")
+    nome = request.form.get("nome", "").strip()
+    email = request.form.get("email", "").strip()
+    mensagem = request.form.get("mensagem", "").strip()
 
-    conexao = conectar()
-    cursor = conexao.cursor()
+    if not nome or not email or not mensagem:
+        flash("Preencha todos os campos do formulário.", "erro")
+        return redirect(url_for("index") + "#contato")
 
-    cursor.execute(
-        """
-        INSERT INTO contatos (nome, email, mensagem)
-        VALUES (%s, %s, %s)
-        """,
-        (nome, email, mensagem)
-    )
+    contatos = carregar_json(ARQUIVO_CONTATOS)
 
-    conexao.commit()
+    contatos.append({
+        "nome": nome,
+        "email": email,
+        "mensagem": mensagem
+    })
 
-    cursor.close()
-    conexao.close()
+    salvar_json(ARQUIVO_CONTATOS, contatos)
 
-    return redirect("/")
-
-
-# =========================================================
-# EQUIPE
-# =========================================================
-
-@app.route("/equipe")
-def equipe():
-    return render_template("equipe.html")
+    flash("Mensagem enviada com sucesso!", "sucesso")
+    return redirect(url_for("index") + "#contato")
 
 
 # =========================================================
-# POLÍTICA DE PRIVACIDADE
+# ROTAS DE POLÍTICAS
 # =========================================================
 
 @app.route("/politica-privacidade")
 def politica_privacidade():
-    return render_template("politica-privacidade.html")
+    return render_template("politica_privacidade.html")
 
-
-# =========================================================
-# TERMOS E CONDIÇÕES
-# =========================================================
 
 @app.route("/termos-condicoes")
 def termos_condicoes():
-    return render_template("termos-condicoes.html")
+    return render_template("termos_condicoes.html")
 
 
 # =========================================================
-# EXECUTAR SERVIDOR
+# ERRO 404 PERSONALIZADO
+# =========================================================
+
+@app.errorhandler(404)
+def pagina_nao_encontrada(erro):
+    return render_template("404.html"), 404
+
+
+# =========================================================
+# INICIALIZAÇÃO
 # =========================================================
 
 if __name__ == "__main__":

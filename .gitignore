@@ -1,5 +1,32 @@
-.env
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
 .venv/
+env/
+ENV/
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# Dados sensíveis (JSON gerados em runtime)
+usuarios.json
+contatos.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Variáveis de ambiente
+.env
