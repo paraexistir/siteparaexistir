@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir | Caixa educativa matemática 2 em 1</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/header.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- BREADCRUMB -->
+    <!-- ========================================================= -->
+    <div class="container breadcrumb">
+
+        <a href="{{ url_for('index') }}">Início</a> &gt;
+
+        <a href="{{ url_for('produtos') }}">Produtos</a> &gt;
+
+        <span>Caixa educativa matemática 2 em 1</span>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- DETALHE DO PRODUTO -->
+    <!-- ========================================================= -->
+    <section class="produto-detalhe">
+
+        <div class="container">
+
+            <div class="detalhe-grid">
+
+
+                <!-- ===== GALERIA (só imagem principal) ===== -->
+                <div class="galeria">
+
+                    <img src="{{ url_for('static', filename='img/prod13.jpeg') }}"
+                        alt="Caixa educativa matemática 2 em 1"
+                        id="imagem-principal">
+
+                </div>
+
+
+                <!-- ===== INFORMAÇÕES DO PRODUTO ===== -->
+                <div class="info-produto">
+
+                    <span class="categoria-tag">
+                        🧩 Estímulo Tátil
+                    </span>
+
+                    <h1>Caixa educativa matemática 2 em 1</h1>
+
+                    <div class="preco">R$393,99</div>
+
+                    <p class="estoque">✅ Em estoque</p>
+
+                    <p class="descricao">
+                        Caixa educativa matemática completa com dois recursos em um
+                        único produto! Ideal para ensinar conceitos matemáticos de
+                        forma lúdica e multissensorial para crianças neurodivergentes.
+                        Inclui materiais táteis e visuais que facilitam a compreensão
+                        de números, operações e raciocínio lógico.
+                    </p>
+
+                    <ul style="margin-bottom: 24px; list-style: disc; padding-left: 20px; color: #3d3d4f;">
+                        <li>Kit completo com 2 recursos educativos em 1</li>
+                        <li>Materiais táteis para aprendizado multissensorial</li>
+                        <li>Desenvolve raciocínio lógico e matemático</li>
+                        <li>Peças coloridas e atóxicas</li>
+                        <li>Ideal para crianças com autismo e outras neurodivergências</li>
+                        <li>Acompanha guia de atividades inclusivas</li>
+                    </ul>
+
+
+                    <!-- ===== BOTÃO ADICIONAR AO CARRINHO ===== -->
+                    <button class="btn-comprar" id="btn-comprar">
+                        🛒 Adicionar ao carrinho
+                    </button>
+
+                    <br>
+
+                    <a href="{{ url_for('produtos') }}" class="btn-voltar">
+                        ← Voltar para a loja
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- PRODUTOS RELACIONADOS -->
+    <!-- ========================================================= -->
+    <section class="relacionados">
+
+        <div class="container">
+
+            <h2>Você também pode gostar</h2>
+
+            <div class="rel-grid">
+
+
+                <a href="{{ url_for('produto_detalhe', nome_produto='alfabeto-educativo') }}"
+                    class="rel-card">
+
+                    <img src="{{ url_for('static', filename='img/prod3.jpeg') }}"
+                        alt="Alfabeto educativo">
+
+                    <p>Alfabeto educativo</p>
+                    <span>R$39,99</span>
+
+                </a>
+
+
+                <a href="{{ url_for('produto_detalhe', nome_produto='popit-circular') }}"
+                    class="rel-card">
+
+                    <img src="{{ url_for('static', filename='img/prod1.jpeg') }}"
+                        alt="Pop it circular">
+
+                    <p>Pop it circular</p>
+                    <span>R$19,99</span>
+
+                </a>
+
+
+                <a href="{{ url_for('produto_detalhe', nome_produto='kit-fidget-toy') }}"
+                    class="rel-card">
+
+                    <img src="{{ url_for('static', filename='img/prod2.jpeg') }}"
+                        alt="Kit fidget toy">
+
+                    <p>Kit fidget toy</p>
+                    <span>R$29,99</span>
+
+                </a>
+
+
+                <a href="{{ url_for('produto_detalhe', nome_produto='quadro-rotina-sensorial') }}"
+                    class="rel-card">
+
+                    <img src="{{ url_for('static', filename='img/prod9.jpeg') }}"
+                        alt="Quadro de rotina sensorial">
+
+                    <p>Quadro de rotina sensorial</p>
+                    <span>R$49,99</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ========================================================= -->
+    <div class="carrinho-modal" id="carrinho-modal">
+
+        <div class="carrinho-modal-content">
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span class="carrinho-fechar" id="carrinho-fechar">
+                    &times;
+                </span>
+
+            </div>
+
+
+            <div class="carrinho-lista" id="carrinho-lista">
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
+
+            </div>
+
+
+            <button class="btn-finalizar" id="btn-finalizar">
+
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- FOOTER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/footer.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DO CARRINHO -->
+    <!-- ========================================================= -->
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+
+    <!-- ========================================================= -->
+    <!-- SCRIPT ESPECÍFICO DESTA PÁGINA -->
+    <!-- ========================================================= -->
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const btnComprar = document.getElementById('btn-comprar');
+
+            if (btnComprar) {
+
+                btnComprar.addEventListener('click', function (e) {
+
+                    e.preventDefault();
+
+                    const nome = 'Caixa educativa matemática 2 em 1';
+                    const preco = 393.99;
+                    const imagem = "{{ url_for('static', filename='img/prod13.jpeg') }}";
+
+                    if (window.adicionarAoCarrinho) {
+                        window.adicionarAoCarrinho(nome, preco, imagem);
+                    } else {
+                        console.error('Função adicionarAoCarrinho não encontrada!');
+                        alert('Erro ao adicionar ao carrinho. Tente novamente.');
+                    }
+
+                });
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

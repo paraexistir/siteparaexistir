@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir | Estímulo Oral</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/header.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- BREADCRUMB -->
+    <!-- ========================================================= -->
+    <div class="container breadcrumb">
+
+        <a href="{{ url_for('index') }}">Início</a> &gt;
+
+        <a href="{{ url_for('produtos') }}">Produtos</a> &gt;
+
+        <span>Estímulo Oral</span>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- CATEGORIA -->
+    <!-- ========================================================= -->
+    <section class="categoria-page">
+
+        <div class="container">
+
+            <div class="categoria-header">
+
+                <span class="categoria-icon">
+                    <i class="fas fa-face-smile" style="font-size: 4rem; color: #d96c8f;"></i>
+                </span>
+
+                <h1>Estímulo Oral</h1>
+
+                <p>Produtos para estimulação e regulação oral</p>
+
+            </div>
+
+
+            <div class="categoria-grid">
+
+
+                <a href="{{ url_for('produto_detalhe', nome_produto='colar-mordedor-silicone') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod7.jpeg') }}"
+                        alt="Colar mordedor sensorial de silicone">
+
+                    <p>Colar mordedor sensorial de silicone</p>
+                    <span>R$9,99</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ========================================================= -->
+    <div class="carrinho-modal" id="carrinho-modal">
+
+        <div class="carrinho-modal-content">
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span class="carrinho-fechar" id="carrinho-fechar">
+                    &times;
+                </span>
+
+            </div>
+
+
+            <div class="carrinho-lista" id="carrinho-lista">
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
+
+            </div>
+
+
+            <button class="btn-finalizar" id="btn-finalizar">
+
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- FOOTER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/footer.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DO CARRINHO -->
+    <!-- ========================================================= -->
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+</body>
+
+</html>

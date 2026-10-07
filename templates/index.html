@@ -7,14 +7,11 @@
 
     <title>Para Existir - Apoio para neurodivergentes</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -30,7 +27,6 @@
     <!-- ========================================================= -->
     <!-- INÍCIO -->
     <!-- ========================================================= -->
-
     <section id="inicio" class="hero">
 
         <div class="container hero-container">
@@ -75,7 +71,6 @@
     <!-- ========================================================= -->
     <!-- PRODUTOS EM DESTAQUE -->
     <!-- ========================================================= -->
-
     <section class="produtos">
 
         <div class="container">
@@ -95,7 +90,6 @@
 
 
                 <!-- PRODUTO 1 -->
-
                 <div class="produto-card"
                     data-nome="Pop it circular"
                     data-preco="19.99"
@@ -105,19 +99,16 @@
                         alt="Pop it circular">
 
                     <p>Pop it circular</p>
-
                     <span>R$19,99</span>
 
                     <div class="btn-group">
 
-                        <a href="{{ url_for('static', filename='produtos/popit-circular.html') }}"
+                        <a href="{{ url_for('produto_detalhe', nome_produto='popit-circular') }}"
                             class="btn-ver">
                             Ver
                         </a>
 
-                        <button class="btn-add-carrinho">
-                            Comprar
-                        </button>
+                        <button class="btn-add-carrinho">Comprar</button>
 
                     </div>
 
@@ -125,7 +116,6 @@
 
 
                 <!-- PRODUTO 2 -->
-
                 <div class="produto-card"
                     data-nome="Alfabeto educativo"
                     data-preco="39.99"
@@ -135,19 +125,16 @@
                         alt="Alfabeto educativo">
 
                     <p>Alfabeto educativo</p>
-
                     <span>R$39,99</span>
 
                     <div class="btn-group">
 
-                        <a href="{{ url_for('static', filename='produtos/alfabeto-educativo.html') }}"
+                        <a href="{{ url_for('produto_detalhe', nome_produto='alfabeto-educativo') }}"
                             class="btn-ver">
                             Ver
                         </a>
 
-                        <button class="btn-add-carrinho">
-                            Comprar
-                        </button>
+                        <button class="btn-add-carrinho">Comprar</button>
 
                     </div>
 
@@ -155,7 +142,6 @@
 
 
                 <!-- PRODUTO 3 -->
-
                 <div class="produto-card"
                     data-nome="Quadro de rotina sensorial"
                     data-preco="49.99"
@@ -165,19 +151,16 @@
                         alt="Quadro de rotina sensorial">
 
                     <p>Quadro de rotina sensorial</p>
-
                     <span>R$49,99</span>
 
                     <div class="btn-group">
 
-                        <a href="{{ url_for('static', filename='produtos/quadro-rotina-sensorial.html') }}"
+                        <a href="{{ url_for('produto_detalhe', nome_produto='quadro-rotina-sensorial') }}"
                             class="btn-ver">
                             Ver
                         </a>
 
-                        <button class="btn-add-carrinho">
-                            Comprar
-                        </button>
+                        <button class="btn-add-carrinho">Comprar</button>
 
                     </div>
 
@@ -185,7 +168,6 @@
 
 
                 <!-- PRODUTO 4 -->
-
                 <div class="produto-card"
                     data-nome="Planner da Inclusão"
                     data-preco="39.99"
@@ -195,23 +177,21 @@
                         alt="Planner da Inclusão">
 
                     <p>Planner da Inclusão</p>
-
                     <span>R$39,99</span>
 
                     <div class="btn-group">
 
-                        <a href="{{ url_for('static', filename='produtos/planner-inclusao.html') }}"
+                        <a href="{{ url_for('produto_detalhe', nome_produto='planner-inclusao') }}"
                             class="btn-ver">
                             Ver
                         </a>
 
-                        <button class="btn-add-carrinho">
-                            Comprar
-                        </button>
+                        <button class="btn-add-carrinho">Comprar</button>
 
                     </div>
 
                 </div>
+
 
             </div>
 
@@ -236,7 +216,6 @@
     <!-- ========================================================= -->
     <!-- SOBRE NÓS -->
     <!-- ========================================================= -->
-
     <section id="sobre" class="sobre">
 
         <div class="container">
@@ -273,18 +252,14 @@
 
                         <div class="sobre-frase-destaque">
 
-                            <span class="aspas">
-                                "
-                            </span>
+                            <span class="aspas">"</span>
 
                             <h3>
                                 Cada pessoa aprende de um jeito.
                                 Nosso papel é respeitar isso.
                             </h3>
 
-                            <span class="aspas">
-                                "
-                            </span>
+                            <span class="aspas">"</span>
 
                         </div>
 
@@ -323,9 +298,7 @@
                             <i class="fas fa-heart"></i>
                         </div>
 
-                        <h3>
-                            Inclusão real
-                        </h3>
+                        <h3>Inclusão real</h3>
 
                         <p>
                             Respeitamos cada individualidade sem padrões rígidos.
@@ -340,9 +313,7 @@
                             <i class="fas fa-brain"></i>
                         </div>
 
-                        <h3>
-                            Base profissional
-                        </h3>
+                        <h3>Base profissional</h3>
 
                         <p>
                             Produtos pensados com conhecimento especializado.
@@ -357,9 +328,7 @@
                             <i class="fas fa-feather-alt"></i>
                         </div>
 
-                        <h3>
-                            Conforto sensorial
-                        </h3>
+                        <h3>Conforto sensorial</h3>
 
                         <p>
                             Foco no bem-estar e na redução de estímulos negativos.
@@ -379,16 +348,13 @@
     <!-- ========================================================= -->
     <!-- CATEGORIAS -->
     <!-- ========================================================= -->
-
     <section id="categorias" class="categorias">
 
         <div class="container">
 
             <div class="section-header">
 
-                <h2>
-                    Compre por tipo de brinquedo
-                </h2>
+                <h2>Compre por tipo de brinquedo</h2>
 
                 <div class="stars">
                     ★ ★ ★
@@ -401,77 +367,53 @@
 
 
                 <!-- CATEGORIA 1 -->
-
-                <a href="{{ url_for('static', filename='categorias/estimulo-tatil.html') }}"
+                <a href="{{ url_for('categoria_detalhe', nome_categoria='estimulo-tatil') }}"
                     class="categoria">
 
                     <img src="{{ url_for('static', filename='img/categoria1.jpeg') }}"
                         alt="Estímulo Tátil">
 
-                    <h3>
-                        Estímulo Tátil
-                    </h3>
-
-                    <p>
-                        Fidgets, Squish
-                    </p>
+                    <h3>Estímulo Tátil</h3>
+                    <p>Fidgets, Squish</p>
 
                 </a>
 
 
                 <!-- CATEGORIA 2 -->
-
-                <a href="{{ url_for('static', filename='categorias/estimulo-auditivo.html') }}"
+                <a href="{{ url_for('categoria_detalhe', nome_categoria='estimulo-auditivo') }}"
                     class="categoria">
 
                     <img src="{{ url_for('static', filename='img/categoria2.jpeg') }}"
                         alt="Estímulo Auditivo">
 
-                    <h3>
-                        Estímulo Auditivo
-                    </h3>
-
-                    <p>
-                        Fones, sons
-                    </p>
+                    <h3>Estímulo Auditivo</h3>
+                    <p>Fones, sons</p>
 
                 </a>
 
 
                 <!-- CATEGORIA 3 -->
-
-                <a href="{{ url_for('static', filename='categorias/estimulo-visual.html') }}"
+                <a href="{{ url_for('categoria_detalhe', nome_categoria='estimulo-visual') }}"
                     class="categoria">
 
                     <img src="{{ url_for('static', filename='img/categoria3.jpeg') }}"
                         alt="Estímulo Visual">
 
-                    <h3>
-                        Estímulo Visual
-                    </h3>
-
-                    <p>
-                        Luzes, cores
-                    </p>
+                    <h3>Estímulo Visual</h3>
+                    <p>Luzes, cores</p>
 
                 </a>
 
 
                 <!-- CATEGORIA 4 -->
-
-                <a href="{{ url_for('static', filename='categorias/estimulo-oral.html') }}"
+                <a href="{{ url_for('categoria_detalhe', nome_categoria='estimulo-oral') }}"
                     class="categoria">
 
                     <img src="{{ url_for('static', filename='img/categoria4.jpeg') }}"
                         alt="Estímulo Oral">
 
-                    <h3>
-                        Estímulo Oral
-                    </h3>
-
-                    <p>
-                        Mordedores
-                    </p>
+                    <h3>Estímulo Oral</h3>
+                    <p>Mordedores</p>
 
                 </a>
 
@@ -485,16 +427,13 @@
     <!-- ========================================================= -->
     <!-- SERVIÇOS -->
     <!-- ========================================================= -->
-
     <section id="servicos" class="servicos">
 
         <div class="container">
 
             <div class="section-header">
 
-                <h2>
-                    Nossos serviços
-                </h2>
+                <h2>Nossos serviços</h2>
 
                 <h3>
                     Recursos pensados para apoiar cada etapa do desenvolvimento
@@ -510,81 +449,63 @@
 
 
                     <!-- SERVIÇO 1 -->
-
                     <div class="servico-card">
 
                         <div class="servico-icon">
                             <i class="fas fa-book-open"></i>
                         </div>
 
-                        <h3>
-                            Materiais educativos
-                        </h3>
+                        <h3>Materiais educativos</h3>
 
                         <p>
                             Recursos didáticos adaptados para diferentes
                             necessidades de aprendizagem.
                         </p>
 
-                        <a href="#categorias"
-                            class="servico-btn">
-
+                        <a href="#categorias" class="servico-btn">
                             Saiba mais
-
                         </a>
 
                     </div>
 
 
                     <!-- SERVIÇO 2 -->
-
                     <div class="servico-card">
 
                         <div class="servico-icon">
                             <i class="fas fa-hand-sparkles"></i>
                         </div>
 
-                        <h3>
-                            Produtos sensoriais
-                        </h3>
+                        <h3>Produtos sensoriais</h3>
 
                         <p>
                             Ferramentas para estímulo e conforto
                             sensorial no dia a dia.
                         </p>
 
-                        <a href="{{ url_for('produtos') }}"
-                            class="servico-btn">
-
+                        <a href="{{ url_for('produtos') }}" class="servico-btn">
                             Saiba mais
-
                         </a>
 
                     </div>
 
 
                     <!-- SERVIÇO 3 -->
-
                     <div class="servico-card">
 
                         <div class="servico-icon">
                             <i class="fas fa-headset"></i>
                         </div>
 
-                        <h3>
-                            Atendimento especializado
-                        </h3>
+                        <h3>Atendimento especializado</h3>
 
                         <p>
                             Apoio acolhedor para famílias e crianças
                             em todas as etapas.
                         </p>
 
-                        <a href="#contato"
-                            class="servico-btn">
-
+                        <a href="#contato" class="servico-btn">
                             Saiba mais
-
                         </a>
 
                     </div>
@@ -617,7 +538,6 @@
     <!-- ========================================================= -->
     <!-- CONTATO -->
     <!-- ========================================================= -->
-
     <section id="contato" class="contato">
 
         <div class="container contato-container">
@@ -625,13 +545,9 @@
 
             <div class="contato-text">
 
-                <span>
-                    Contato
-                </span>
+                <span>Contato</span>
 
-                <h2>
-                    Vamos conversar?
-                </h2>
+                <h2>Vamos conversar?</h2>
 
                 <p>
                     Entre em contato para conhecer nossos serviços
@@ -649,9 +565,7 @@
 
                 <div class="input-group">
 
-                    <label>
-                        Seu nome
-                    </label>
+                    <label>Seu nome</label>
 
                     <input type="text"
                         name="nome"
@@ -664,9 +578,7 @@
 
                 <div class="input-group">
 
-                    <label>
-                        Seu e-mail
-                    </label>
+                    <label>Seu e-mail</label>
 
                     <input type="email"
                         name="email"
@@ -679,9 +591,7 @@
 
                 <div class="input-group">
 
-                    <label>
-                        Sua mensagem
-                    </label>
+                    <label>Sua mensagem</label>
 
                     <textarea id="contato-mensagem"
                         name="mensagem"
@@ -691,11 +601,8 @@
                 </div>
 
 
-                <button type="submit"
-                    class="btn-enviar">
-
+                <button type="submit" class="btn-enviar">
                     Enviar mensagem
-
                 </button>
 
             </form>
@@ -707,9 +614,7 @@
 
                 <i class="fas fa-check-circle"></i>
 
-                <p>
-                    Mensagem enviada com sucesso!
-                </p>
+                <p>Mensagem enviada com sucesso!</p>
 
                 <p class="contato-aviso-sub">
                     Entraremos em contato em breve.
@@ -725,12 +630,9 @@
     <!-- ========================================================= -->
     <!-- MODAL DO CARRINHO -->
     <!-- ========================================================= -->
-
-    <div class="carrinho-modal"
-        id="carrinho-modal">
+    <div class="carrinho-modal" id="carrinho-modal">
 
         <div class="carrinho-modal-content">
-
 
             <div class="carrinho-modal-header">
 
@@ -739,18 +641,14 @@
                     Meu Carrinho
                 </h3>
 
-                <span class="carrinho-fechar"
-                    id="carrinho-fechar">
-
+                <span class="carrinho-fechar" id="carrinho-fechar">
                     &times;
-
                 </span>
 
             </div>
 
 
-            <div class="carrinho-lista"
-                id="carrinho-lista">
+            <div class="carrinho-lista" id="carrinho-lista">
 
                 <p class="carrinho-vazio">
                     🛒 Seu carrinho está vazio
@@ -761,19 +659,13 @@
 
             <div class="carrinho-total">
 
-                <span>
-                    Total:
-                </span>
-
-                <span id="carrinho-total">
-                    R$0,00
-                </span>
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
 
             </div>
 
 
-            <button class="btn-finalizar"
-                id="btn-finalizar">
+            <button class="btn-finalizar" id="btn-finalizar">
 
                 <i class="fab fa-whatsapp"></i>
                 Finalizar Compra
@@ -794,19 +686,15 @@
     <!-- ========================================================= -->
     <!-- JAVASCRIPT DO CARRINHO -->
     <!-- ========================================================= -->
-
     <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
 
 
     <!-- ========================================================= -->
     <!-- JAVASCRIPT DOS PRODUTOS -->
     <!-- ========================================================= -->
-
     <script>
 
-        const botoesComprar =
-            document.querySelectorAll('.btn-add-carrinho');
-
+        const botoesComprar = document.querySelectorAll('.btn-add-carrinho');
 
         botoesComprar.forEach(function (btn) {
 
@@ -814,32 +702,18 @@
 
                 e.stopPropagation();
 
-                const card =
-                    this.closest('.produto-card');
-
-                const nome =
-                    card.dataset.nome;
-
-                const preco =
-                    parseFloat(card.dataset.preco);
-
-                const imagem =
-                    card.dataset.imagem;
-
+                const card = this.closest('.produto-card');
+                const nome = card.dataset.nome;
+                const preco = parseFloat(card.dataset.preco);
+                const imagem = card.dataset.imagem;
 
                 if (window.adicionarAoCarrinho) {
 
-                    window.adicionarAoCarrinho(
-                        nome,
-                        preco,
-                        imagem
-                    );
+                    window.adicionarAoCarrinho(nome, preco, imagem);
 
                 } else {
 
-                    console.error(
-                        'Função adicionarAoCarrinho não encontrada!'
-                    );
+                    console.error('Função adicionarAoCarrinho não encontrada!');
 
                 }
 
@@ -848,50 +722,31 @@
         });
 
 
-        const cards =
-            document.querySelectorAll('.produto-card');
-
-        const grid =
-            document.querySelector('.produtos-grid');
-
+        const cards = document.querySelectorAll('.produto-card');
+        const grid = document.querySelector('.produtos-grid');
 
         cards.forEach(function (card) {
 
             card.addEventListener('click', function (e) {
 
-                if (
-                    e.target.classList.contains('btn-add-carrinho') ||
-                    e.target.closest('.btn-ver')
-                ) {
-
+                if (e.target.classList.contains('btn-add-carrinho') ||
+                    e.target.closest('.btn-ver')) {
                     return;
-
                 }
-
 
                 e.stopPropagation();
 
-
-                const isActive =
-                    this.classList.contains('ativo');
-
+                const isActive = this.classList.contains('ativo');
 
                 cards.forEach(function (c) {
-
                     c.classList.remove('ativo');
-
                 });
-
 
                 grid.classList.remove('ativo');
 
-
                 if (!isActive) {
-
                     this.classList.add('ativo');
-
                     grid.classList.add('ativo');
-
                 }
 
             });
@@ -902,9 +757,7 @@
         document.addEventListener('click', function () {
 
             cards.forEach(function (c) {
-
                 c.classList.remove('ativo');
-
             });
 
             grid.classList.remove('ativo');

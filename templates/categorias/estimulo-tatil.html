@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir | Estímulo Tátil</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/header.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- BREADCRUMB -->
+    <!-- ========================================================= -->
+    <div class="container breadcrumb">
+
+        <a href="{{ url_for('index') }}">Início</a> &gt;
+
+        <a href="{{ url_for('produtos') }}">Produtos</a> &gt;
+
+        <span>Estímulo Tátil</span>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- CATEGORIA -->
+    <!-- ========================================================= -->
+    <section class="categoria-page">
+
+        <div class="container">
+
+            <div class="categoria-header">
+
+                <span class="categoria-icon">
+                    <i class="fas fa-hand" style="font-size: 4rem; color: #d96c8f;"></i>
+                </span>
+
+                <h1>Estímulo Tátil</h1>
+
+                <p>Brinquedos e acessórios que estimulam o toque e a percepção tátil</p>
+
+            </div>
+
+
+            <div class="categoria-grid">
+
+
+                <!-- Produto 1 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='popit-circular') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod1.jpeg') }}"
+                        alt="Pop it circular">
+
+                    <p>Pop it circular</p>
+                    <span>R$19,99</span>
+
+                </a>
+
+
+                <!-- Produto 2 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='kit-fidget-toy') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod2.jpeg') }}"
+                        alt="Kit fidget toy">
+
+                    <p>Kit fidget toy</p>
+                    <span>R$29,99</span>
+
+                </a>
+
+
+                <!-- Produto 3 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='alfabeto-educativo') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod3.jpeg') }}"
+                        alt="Alfabeto educativo">
+
+                    <p>Alfabeto educativo</p>
+                    <span>R$39,99</span>
+
+                </a>
+
+
+                <!-- Produto 4 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='popit-quadrado') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod4.jpeg') }}"
+                        alt="Pop it quadrado">
+
+                    <p>Pop it quadrado</p>
+                    <span>R$19,99</span>
+
+                </a>
+
+
+                <!-- Produto 5 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='polvo-squish-led') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod5.jpeg') }}"
+                        alt="Polvo Squish LED">
+
+                    <p>Polvo Squish LED</p>
+                    <span>R$29,99</span>
+
+                </a>
+
+
+                <!-- Produto 6 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='anel-tatil-sensorial') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod14.jpeg') }}"
+                        alt="Anel tátil sensorial">
+
+                    <p>Anel tátil sensorial</p>
+                    <span>R$9,99</span>
+
+                </a>
+
+
+                <!-- Produto 7 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='squishy-mesh-ball') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod8.jpeg') }}"
+                        alt="Squishy mesh ball">
+
+                    <p>Squishy mesh ball</p>
+                    <span>R$9,99</span>
+
+                </a>
+
+
+                <!-- Produto 8 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='slug-fidget-lesma') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod11.jpeg') }}"
+                        alt="Slug fidget lesma">
+
+                    <p>Slug fidget lesma</p>
+                    <span>R$19,99</span>
+
+                </a>
+
+
+                <!-- Produto 9 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='caixa-matematica-2em1') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod13.jpeg') }}"
+                        alt="Caixa educativa matemática">
+
+                    <p>Caixa educativa matemática</p>
+                    <span>R$393,99</span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ========================================================= -->
+    <div class="carrinho-modal" id="carrinho-modal">
+
+        <div class="carrinho-modal-content">
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span class="carrinho-fechar" id="carrinho-fechar">
+                    &times;
+                </span>
+
+            </div>
+
+
+            <div class="carrinho-lista" id="carrinho-lista">
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
+
+            </div>
+
+
+            <button class="btn-finalizar" id="btn-finalizar">
+
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- FOOTER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/footer.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DO CARRINHO -->
+    <!-- ========================================================= -->
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+</body>
+
+</html>

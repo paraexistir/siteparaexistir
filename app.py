@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from jinja2 import TemplateNotFound
 import json
 import os
 
@@ -38,26 +39,50 @@ def salvar_json(caminho, dados):
 
 @app.route("/")
 def index():
-    """Página inicial."""
     return render_template("index.html")
 
 
 @app.route("/produtos")
 def produtos():
-    """Página de listagem de produtos."""
     return render_template("produtos.html")
 
 
 @app.route("/equipe")
 def equipe():
-    """Página da equipe."""
     return render_template("equipe.html")
 
 
 @app.route("/ia")
 def ia():
-    """Página da P.E. Rotina (assistente)."""
     return render_template("ia.html")
+
+
+# =========================================================
+# ROTAS DINÂMICAS — PRODUTOS E CATEGORIAS
+# =========================================================
+
+@app.route("/produtos/<nome_produto>")
+def produto_detalhe(nome_produto):
+    """
+    Serve qualquer página de produto em templates/produtos/.
+    Ex: /produtos/popit-circular  →  templates/produtos/popit-circular.html
+    """
+    try:
+        return render_template(f"produtos/{nome_produto}.html")
+    except TemplateNotFound:
+        return render_template("404.html"), 404
+
+
+@app.route("/categorias/<nome_categoria>")
+def categoria_detalhe(nome_categoria):
+    """
+    Serve qualquer página de categoria em templates/categorias/.
+    Ex: /categorias/estimulo-tatil  →  templates/categorias/estimulo-tatil.html
+    """
+    try:
+        return render_template(f"categorias/{nome_categoria}.html")
+    except TemplateNotFound:
+        return render_template("404.html"), 404
 
 
 # =========================================================
@@ -66,18 +91,13 @@ def ia():
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
-    """Página e processamento do cadastro."""
 
     if request.method == "POST":
 
         nome = request.form.get("nome", "").strip()
         email = request.form.get("email", "").strip().lower()
         senha = request.form.get("senha", "")
-        confirmar = request.form.get("confirmar", "")  # opcional
-
-        # -------------------------------
-        # VALIDAÇÕES
-        # -------------------------------
+        confirmar = request.form.get("confirmar", "")
 
         if not nome or not email or not senha:
             flash("Preencha todos os campos.", "erro")
@@ -91,19 +111,11 @@ def cadastro():
             flash("As senhas não coincidem.", "erro")
             return redirect(url_for("cadastro"))
 
-        # -------------------------------
-        # VERIFICA SE E-MAIL JÁ EXISTE
-        # -------------------------------
-
         usuarios = carregar_json(ARQUIVO_USUARIOS)
 
         if any(u.get("email") == email for u in usuarios):
             flash("Este e-mail já está cadastrado.", "erro")
             return redirect(url_for("cadastro"))
-
-        # -------------------------------
-        # SALVA NOVO USUÁRIO
-        # -------------------------------
 
         usuarios.append({
             "nome": nome,
@@ -121,7 +133,6 @@ def cadastro():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Página e processamento do login."""
 
     if request.method == "POST":
 
@@ -129,17 +140,9 @@ def login():
         senha = request.form.get("senha", "")
         lembrar = request.form.get("lembrar")
 
-        # -------------------------------
-        # VALIDAÇÃO BÁSICA
-        # -------------------------------
-
         if not email or not senha:
             flash("Preencha e-mail e senha.", "erro")
             return redirect(url_for("login"))
-
-        # -------------------------------
-        # PROCURA O USUÁRIO
-        # -------------------------------
 
         usuarios = carregar_json(ARQUIVO_USUARIOS)
 
@@ -147,10 +150,6 @@ def login():
             (u for u in usuarios if u.get("email") == email),
             None
         )
-
-        # -------------------------------
-        # VERIFICA SENHA
-        # -------------------------------
 
         if usuario and check_password_hash(usuario.get("senha", ""), senha):
 
@@ -172,7 +171,6 @@ def login():
 
 @app.route("/logout")
 def logout():
-    """Encerra a sessão do usuário."""
     session.clear()
     flash("Você saiu da sua conta.", "sucesso")
     return redirect(url_for("index"))
@@ -184,7 +182,6 @@ def logout():
 
 @app.route("/salvar_contato", methods=["POST"])
 def salvar_contato():
-    """Salva a mensagem enviada pelo formulário de contato."""
 
     nome = request.form.get("nome", "").strip()
     email = request.form.get("email", "").strip()

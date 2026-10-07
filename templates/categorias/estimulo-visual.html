@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Existir | Estímulo Visual</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ========================================================= -->
+    <!-- HEADER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/header.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- BREADCRUMB -->
+    <!-- ========================================================= -->
+    <div class="container breadcrumb">
+
+        <a href="{{ url_for('index') }}">Início</a> &gt;
+
+        <a href="{{ url_for('produtos') }}">Produtos</a> &gt;
+
+        <span>Estímulo Visual</span>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- CATEGORIA -->
+    <!-- ========================================================= -->
+    <section class="categoria-page">
+
+        <div class="container">
+
+            <div class="categoria-header">
+
+                <span class="categoria-icon">
+                    <i class="fas fa-eye" style="font-size: 4rem; color: #d96c8f;"></i>
+                </span>
+
+                <h1>Estímulo Visual</h1>
+
+                <p>Brinquedos e acessórios que estimulam a percepção visual</p>
+
+            </div>
+
+
+            <div class="categoria-grid">
+
+
+                <!-- Produto 1 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='fluor-sensorial-classificacao') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod12.jpeg') }}"
+                        alt="Fluor sensorial de classificação">
+
+                    <p>Fluor sensorial de classificação</p>
+                    <span>R$19,99</span>
+
+                </a>
+
+
+                <!-- Produto 2 -->
+                <a href="{{ url_for('produto_detalhe', nome_produto='rainbow-fluor-ball') }}"
+                    class="categoria-produto">
+
+                    <img src="{{ url_for('static', filename='img/prod10.jpeg') }}"
+                        alt="Rainbow Fluor Ball">
+
+                    <p>Rainbow Fluor Ball</p>
+                    <span>R$14,99</span>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL DO CARRINHO -->
+    <!-- ========================================================= -->
+    <div class="carrinho-modal" id="carrinho-modal">
+
+        <div class="carrinho-modal-content">
+
+            <div class="carrinho-modal-header">
+
+                <h3>
+                    <i class="fas fa-shopping-cart"></i>
+                    Meu Carrinho
+                </h3>
+
+                <span class="carrinho-fechar" id="carrinho-fechar">
+                    &times;
+                </span>
+
+            </div>
+
+
+            <div class="carrinho-lista" id="carrinho-lista">
+
+                <p class="carrinho-vazio">
+                    🛒 Seu carrinho está vazio
+                </p>
+
+            </div>
+
+
+            <div class="carrinho-total">
+
+                <span>Total:</span>
+                <span id="carrinho-total">R$0,00</span>
+
+            </div>
+
+
+            <button class="btn-finalizar" id="btn-finalizar">
+
+                <i class="fab fa-whatsapp"></i>
+                Finalizar Compra
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- FOOTER (importado) -->
+    <!-- ========================================================= -->
+    {% include 'partials/footer.html' %}
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT DO CARRINHO -->
+    <!-- ========================================================= -->
+    <script src="{{ url_for('static', filename='carrinho.js') }}"></script>
+
+</body>
+
+</html>
